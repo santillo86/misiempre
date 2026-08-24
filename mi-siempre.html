@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mi Siempre · Portal de clientes | SIEMPRE</title>
+<meta name="description" content="Mi Siempre es el portal de SIEMPRE para consultar turnos, conocer a los profesionales asignados y tener los contactos importantes siempre a mano.">
+<meta property="og:title" content="Mi Siempre · Portal de clientes | SIEMPRE">
+<meta property="og:description" content="Turnos, profesionales asignados y contactos, siempre a mano.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
+<link rel="icon" type="image/svg+xml" href="assets/img/iso-siempre.svg">
+<style>
+
+
+/* =========================================================================
+   Mi Siempre — portal de SIEMPRE
+   Los tokens de marca son los mismos de assets/css/styles.css.
+   Si cambia un color de marca, se cambia allá y acá (una sola línea).
+   ========================================================================= */
+:root{
+  /* --- Tokens de marca (espejo de styles.css) --- */
+  --c-primary:#083A7F;
+  --c-secondary:#51C0ED;
+  --c-prevenite:#1ECDB0;
+  --c-text:#2b2b2b;
+  --c-text-muted:#606060;
+  --c-bg:#ffffff;
+  --c-bg-soft:#F4F8FC;
+  --c-bg-alt:#EAF3FB;
+  --c-border:#e3ebf3;
+  --c-success:#2FA675;
+  --gradient-primary:linear-gradient(135deg,#083A7F 0%,#0D4E9F 100%);
+  --radius-sm:8px; --radius-md:14px; --radius-lg:22px; --radius-xl:32px;
+  --shadow-sm:0 2px 8px rgba(29,112,183,.08);
+  --shadow-md:0 8px 24px rgba(29,112,183,.10);
+  --shadow-lg:0 18px 48px rgba(8,58,127,.14);
+  --container:1180px;
+  --t-fast:180ms ease; --t-slow:320ms ease;
+
+  /* --- Alias cortos usados dentro del portal --- */
+  --blue:var(--c-primary);
+  --sky:var(--c-secondary);
+  --ink:var(--c-text);
+  --muted:#566579; /* gris azulado del portal, oscurecido a >=5:1 */
+  --bg:var(--c-bg-soft);
+  --ice:var(--c-bg-alt);
+  --line:var(--c-border);
+  --white:#fff;
+  --green:var(--c-success);
+  --shadow:var(--shadow-md);
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}html,body{margin:0;max-width:100%;overflow-x:hidden;font-family:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:var(--ink);background:var(--bg)}a{text-decoration:none;color:inherit}img{display:block;max-width:100%}input{font:inherit}
+/* ROUTING: landing stays beneath, only targeted screens overlay it. No JS required. */
+.route{display:none;position:fixed;inset:0;z-index:100;background:var(--bg);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}.route:target{display:block}
+.topbar{background:var(--c-primary);color:#fff;font-size:.82rem;letter-spacing:.01em}.topbar-inner{max-width:1180px;margin:auto;padding:0 24px;height:32px;display:flex;align-items:center;justify-content:center;gap:12px}.header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line);transition:box-shadow .32s ease,border-color .32s ease}.header-inner{max-width:1180px;height:68px;margin:auto;padding:0 24px;display:flex;align-items:center;gap:14px;min-width:0}.logo{width:163px;flex:0 0 auto}.brand-section{height:22px;width:auto;display:block;object-fit:contain;border-left:1px solid var(--line);padding-left:14px;flex:0 0 auto}.header-actions{margin-left:auto;display:flex;gap:8px;min-width:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 26px;border-radius:999px;font-size:15px;font-weight:600;font-family:inherit;border:2px solid transparent;white-space:nowrap;cursor:pointer;transition:all var(--t-fast)}.btn-primary{background:var(--blue);color:#fff}.btn-outline{background:#fff;border-color:var(--blue);color:var(--blue)}.btn-sky{background:var(--sky);color:var(--blue)}.btn-soft{background:var(--ice);color:var(--blue)}.btn-sm{min-height:38px;padding:0 14px;font-size:14px}.hide-mobile{display:none}
+.container{width:min(1180px,100%);margin:auto;padding:0 14px;min-width:0}
+/* Landing */
+.landing{min-height:100vh;background:#fff}.hero{position:relative;isolation:isolate;overflow:hidden;color:#fff;background:var(--c-primary) url('assets/img/banners/banner-cta-final.jpg') center/cover no-repeat;padding:64px 0 68px}.hero:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(to top,rgba(8,58,127,.96) 0%,rgba(8,58,127,.88) 38%,rgba(8,58,127,.60) 100%)}.hero-grid{display:grid;grid-template-columns:1fr;gap:18px;align-items:center}.hero-copy{padding:8px 2px}.eyebrow{font-size:13px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);margin-bottom:10px}.hero h1{margin:0 0 14px;color:var(--blue);font-size:38px;line-height:1.02;letter-spacing:-.045em}.hero p{margin:0 0 18px;color:var(--muted);font-size:14px;line-height:1.55}.hero-actions{display:grid;grid-template-columns:1fr;gap:9px}.hero-photo{border-radius:24px;overflow:hidden;min-height:245px;background:#e6edf4;box-shadow:var(--shadow-sm)}.hero-photo img{width:100%;height:100%;min-height:245px;object-fit:cover;object-position:center}.benefits{padding:14px 0 24px}.benefit-grid{display:grid;gap:10px}.benefit{background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:15px}.benefit strong{display:block;color:var(--blue);font-size:16px;margin-bottom:4px}.benefit p{margin:0;color:var(--muted);font-size:14px;line-height:1.45}.mock-section{background:var(--bg);padding:26px 0 34px}.section-head{margin-bottom:16px}.section-head h2{margin:0 0 7px;color:var(--blue);font-size:26px;line-height:1.08;letter-spacing:-.035em}.section-head p{margin:0;color:var(--muted);font-size:15px}.mock-grid{display:grid;gap:11px}.mock-card{display:grid;gap:18px;justify-items:center;text-align:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px 18px 26px;min-width:0;box-shadow:var(--shadow-sm)}.mock-copy strong{display:block;color:var(--c-primary);font-size:17px;margin-bottom:7px}.mock-copy p{margin:0;color:var(--muted);font-size:10px;line-height:1.45}.phone{background:#101010;border-radius:32px;padding:6px;box-shadow:0 18px 38px rgba(8,58,127,.18);width:100%;max-width:208px;margin:0 auto}.phone-shell{background:#fff;border-radius:26px;overflow:hidden}.phone-top{height:26px;display:flex;align-items:center;justify-content:center}.dynamic-island{width:54px;height:14px;background:#101010;border-radius:999px}.phone-body{padding:12px 11px 14px}.phone-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.phone-head b{font-size:8px;color:var(--blue)}.avatar{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;background:var(--ice);color:var(--c-primary);font-size:10px;font-weight:700;flex:0 0 auto}.mini-card{background:var(--c-primary);color:#fff;border-radius:13px;padding:11px;margin-bottom:8px}.mini-card small{font-size:6px;color:#cceadf}.mini-card b{display:block;font-size:9px;margin:4px 0 1px}.mini-card span{font-size:6px;opacity:.78}.mini-row{display:grid;gap:7px}.mini-item{border:1px solid var(--line);border-radius:11px;padding:9px}.mini-item b{display:block;color:var(--blue);font-size:7px}.mini-item span{font-size:6px;color:var(--muted)}
+/* Auth */
+.auth-wrap{min-height:calc(100vh - 100px);display:grid;place-items:center;padding:26px 18px 40px}.auth-card{width:min(940px,100%);display:grid;grid-template-columns:1fr;background:#fff;border:1px solid var(--line);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-lg)}.auth-side{background:linear-gradient(155deg,var(--c-primary),#0D4E9F);color:#fff;padding:30px 28px;display:flex;flex-direction:column}.auth-side h1{color:#fff;font-size:30px;line-height:1.05;margin:0 0 10px}.auth-side p{font-size:15px;color:#d5e0ec;margin:0}.auth-photo{margin-top:18px;border-radius:18px;overflow:hidden;height:170px}.auth-photo img{width:100%;height:100%;object-fit:cover}.auth-main{padding:30px 28px 34px}.auth-main h2{font-size:25px;color:var(--blue);margin:0 0 7px}.auth-main>p{margin:0 0 16px;color:var(--muted);font-size:15px}.google{height:44px;border:1px solid #cbd8e6;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:800}.google-g{color:#4285f4;font-weight:900;font-size:16px}.divider{display:flex;align-items:center;gap:8px;margin:14px 0;color:var(--muted);font-size:13px}.divider:before,.divider:after{content:"";height:1px;background:var(--line);flex:1}.field{margin-top:9px}.field label{font-size:13px;font-weight:800;color:var(--muted);display:block;margin-bottom:4px}.field input{width:100%;height:42px;border:1px solid #cad7e5;border-radius:999px;padding:0 14px;font-size:15px;outline:none}.roles{margin-top:15px;display:grid;gap:9px}.role{display:grid;grid-template-columns:66px minmax(0,1fr);gap:12px;align-items:center;border:1px solid var(--line);border-radius:18px;padding:10px;background:#fff;min-width:0}.role-photo{width:66px;height:72px;border-radius:14px;overflow:hidden;background:var(--ice)}.role-photo img{width:100%;height:100%;object-fit:cover}.role h3{margin:0 0 4px;font-size:16px;color:var(--blue)}.role p{margin:0 0 7px;font-size:13px;color:var(--muted);line-height:1.4}.role .btn{min-height:34px;padding:0 12px;font-size:13px}
+/* Portal shared */
+.portal{min-height:100%;padding-bottom:84px}.portal-header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line);transition:box-shadow .32s ease,border-color .32s ease}.portal-header-inner{height:68px;padding:0 24px;display:flex;align-items:center;gap:14px;max-width:1180px;margin:auto;min-width:0}.portal-header .logo{width:112px}.portal-title{font-size:.92rem;font-weight:600;color:var(--c-primary);border-left:1px solid var(--line);padding-left:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}img.portal-title{height:22px;width:auto;object-fit:contain;flex:0 0 auto}.portal-avatar{margin-left:auto;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--ice);color:var(--c-primary);font-size:.82rem;font-weight:700;flex:0 0 auto;transition:background var(--t-fast)}.portal-avatar:hover{background:var(--c-secondary)}.back{font-size:26px;line-height:1;color:var(--c-primary);font-weight:400;flex:0 0 auto;width:32px;height:32px;display:grid;place-items:center;border-radius:50%;margin-left:-6px;transition:background var(--t-fast)}.back:hover{background:var(--ice)}.portal-layout{max-width:1180px;margin:auto;padding:16px 13px;display:grid;grid-template-columns:1fr;gap:14px;min-width:0}.desktop-sidebar{display:none}.portal-main{min-width:0}.page-head{margin-bottom:13px}.page-head h1{margin:0;color:var(--blue);font-size:25px;letter-spacing:-.035em}.page-head p{margin:3px 0 0;color:var(--muted);font-size:14px}.grid2{display:grid;grid-template-columns:1fr;gap:11px;min-width:0}.stack{display:grid;gap:11px;min-width:0}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:var(--shadow-sm);min-width:0}.card.blue{background:var(--blue);color:#fff;border:none;padding:18px}.status{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:800;color:#c9f0de}.status-dot{width:7px;height:7px;background:#5BE0A4;border-radius:50%}.big-time{font-size:31px;line-height:1;font-weight:800;letter-spacing:-.045em;margin:12px 0 5px}.person-name{font-size:16px;font-weight:800}.sub{font-size:13px;color:#cad8e7}.card-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.card-actions .btn{min-height:35px;padding:0 12px;font-size:13px}.card-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.card-title h3{font-size:15px;color:var(--blue);margin:0}.card-title a{font-size:13px;color:var(--blue);font-weight:800}.person-card{display:grid;grid-template-columns:70px minmax(0,1fr);gap:10px;align-items:start}.person-card img{width:70px;height:82px;border-radius:15px;object-fit:cover}.person-card strong{display:block;font-size:15px;color:var(--blue);margin:1px 0 2px}.person-card p{font-size:13px;color:var(--muted);margin:0}.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}.tag{padding:4px 6px;background:var(--bg);border-radius:999px;font-size:11px;font-weight:800;color:var(--muted)}.list{display:grid;gap:6px}.list-item{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:12px;padding:9px 10px;background:#fff;min-width:0}.list-item>div{min-width:0}.list-item strong{display:block;font-size:13px;color:var(--blue);word-break:break-word}.list-item span{display:block;font-size:12px;color:var(--muted);word-break:break-word}.list-item b{font-size:13px;color:var(--blue);flex:0 0 auto}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.stat{border:1px solid var(--line);border-radius:12px;padding:8px;min-width:0}.stat span{display:block;font-size:11px;color:var(--muted)}.stat strong{display:block;font-size:13px;color:var(--blue);word-break:break-word}.notice{padding:10px;border-radius:12px;background:#eaf8f2;border:1px solid #d0ecdf;color:#287a60;font-size:13px}.notice.warning{background:#fff8e7;border-color:#f1e0ab;color:#866515}
+/* Mobile calendar: deliberately vertical, no sideways scroll */
+.schedule{display:grid;gap:9px}.schedule-day{display:grid;grid-template-columns:58px minmax(0,1fr);gap:14px;align-items:center;border:1px solid var(--line);border-radius:var(--radius-md);padding:12px 14px;background:#fff;min-width:0}.date{text-align:center}.date span{display:block;font-size:11px;text-transform:uppercase;font-weight:900;color:var(--muted)}.date b{display:block;font-size:16px;color:var(--blue)}.shift{background:var(--ice);border-radius:11px;padding:11px 13px;font-size:14px;color:var(--c-primary);font-weight:600;min-width:0;border-left:4px solid var(--c-secondary)}.shift.off{background:#f2f4f7;color:var(--muted)}
+.profile-hero{display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;align-items:center}.profile-hero img{width:96px;height:110px;object-fit:cover;border-radius:18px}.profile-hero h2{margin:0 0 3px;font-size:21px;color:var(--blue)}.profile-hero p{margin:0;color:var(--muted);font-size:13px}.data-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px}.data{border:1px solid var(--line);border-radius:11px;padding:9px;min-width:0}.data span{display:block;font-size:11px;color:var(--muted)}.data strong{display:block;font-size:13px;color:var(--blue);word-break:break-word}.map{background:linear-gradient(145deg,#e6f3fa,#f7fbff);border:1px solid var(--line);border-radius:17px;padding:10px}.map-canvas{position:relative;height:170px;border-radius:13px;overflow:hidden;background:linear-gradient(90deg,rgba(8,58,127,.07) 0 2px,transparent 2px 100%),linear-gradient(rgba(8,58,127,.07) 0 2px,transparent 2px 100%),linear-gradient(145deg,#d6edf8,#f8fbff);background-size:42px 42px,42px 42px,100% 100%}.road{position:absolute;background:#b8d3e5;border-radius:999px}.road.a{width:190px;height:13px;left:8px;top:65px;transform:rotate(-14deg)}.road.b{width:180px;height:13px;right:5px;top:102px;transform:rotate(25deg)}.road.c{width:13px;height:135px;left:118px;top:20px}.pin{position:absolute;right:72px;top:64px;width:22px;height:22px;background:var(--blue);border-radius:50% 50% 50% 0;transform:rotate(-45deg)}.pin:after{content:"";position:absolute;left:6px;top:6px;width:9px;height:9px;background:#fff;border-radius:50%}.map-info{margin-top:9px;display:flex;align-items:center;justify-content:space-between;gap:10px}.map-info strong{display:block;font-size:13px;color:var(--blue)}.map-info span{display:block;font-size:11px;color:var(--muted)}
+/* Apple-like glass island */
+.bottom-nav{position:fixed;z-index:160;left:12px;right:12px;bottom:10px;height:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:3px;padding:5px;border-radius:999px;background:rgba(248,252,255,.55);border:1px solid rgba(255,255,255,.82);box-shadow:0 12px 30px rgba(8,58,127,.18),inset 0 0 0 1px rgba(255,255,255,.28);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%)}.bottom-nav a{display:grid;place-items:center;align-content:center;gap:2px;color:var(--muted);border-radius:999px;min-width:0}.bottom-nav a.active{background:rgba(81,192,237,.22);color:var(--blue)}.bottom-nav svg{width:20px;height:20px}.bottom-nav .nav-label{font-size:11px;font-weight:800;line-height:1}.desktop-sidebar nav{display:grid;gap:4px}.desktop-sidebar a{padding:10px 12px;border-radius:999px;font-size:13px;font-weight:800;color:var(--muted)}.desktop-sidebar a.active{background:var(--ice);color:var(--blue)}.desktop-user{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+@media (max-width:380px){.logo{width:112px}.brand-section{display:none}.header-inner{gap:8px}.header-actions .btn{padding:0 12px}.hero-logo{height:40px;margin-bottom:16px}.hero h1{font-size:34px}.profile-hero{grid-template-columns:82px minmax(0,1fr)}.profile-hero img{width:82px;height:98px}.data-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+@media (min-width:720px){.hide-mobile{display:inline-flex}.hero{padding:34px 0}.hero-grid{grid-template-columns:1fr 1fr;gap:36px}.hero h1{font-size:52px}.hero-actions{display:flex}.hero-actions .btn{width:auto}.hero-photo{min-height:390px}.hero-photo img{min-height:390px}.benefit-grid{grid-template-columns:repeat(3,1fr)}.mock-grid{grid-template-columns:repeat(3,1fr)}.mock-card{grid-template-columns:100px minmax(0,1fr)}.phone{max-width:100px}.auth-card{grid-template-columns:.9fr 1.1fr}.roles{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}.schedule{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:900px){.portal{padding-bottom:24px}.portal-layout{grid-template-columns:220px minmax(0,1fr);gap:16px;padding-top:24px}.desktop-sidebar{display:block;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:16px;height:max-content;position:sticky;top:98px}.bottom-nav{display:none}.page-head h1{font-size:30px}.profile-hero{grid-template-columns:130px minmax(0,1fr)}.profile-hero img{width:130px;height:150px}.data-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Titulos: mismo tratamiento que el sitio principal */
+h1,h2,h3,h4,h5,h6{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--c-primary);line-height:1.2;letter-spacing:-.02em}
+
+/* Botones: mismos estados que el sitio principal */
+.btn-primary:hover{background:#0C3E82;color:#fff}
+.btn-outline:hover{background:var(--c-primary);color:#fff}
+.btn-sky:hover{background:var(--c-primary);color:#fff}
+.btn-soft:hover{background:var(--c-secondary);color:var(--c-primary)}
+.btn-sm{min-height:40px;padding:0 18px;font-size:14px}
+
+/* ---- Hero de la landing: mismo lenguaje que el hero del sitio ---- */
+.hero-logo{height:54px;width:auto;display:block;margin-bottom:22px;object-fit:contain}.hero .eyebrow{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.32);
+  color:#fff;font-weight:600;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 15px;border-radius:999px;margin-bottom:16px;backdrop-filter:blur(6px)}
+.hero h1{color:#fff;font-size:clamp(2rem,7vw,3.1rem);font-weight:700;text-transform:uppercase;
+  letter-spacing:.01em;line-height:1.02;margin:0 0 14px;text-shadow:0 2px 14px rgba(8,58,127,.35)}
+.hero h1 .accent{display:block;color:var(--c-secondary)}
+.hero p{color:rgba(255,255,255,.95);font-size:16px;line-height:1.45;font-weight:500;margin:0 0 22px;max-width:34em}
+.hero .btn-primary{background:#fff;color:var(--c-primary)}
+.hero .btn-primary:hover{background:var(--c-secondary);color:var(--c-primary)}
+.hero .btn-outline{background:transparent;border-color:#fff;color:#fff}
+.hero .btn-outline:hover{background:#fff;color:var(--c-primary)}
+.hero-photo{border-radius:var(--radius-lg);overflow:hidden;min-height:245px;background:rgba(255,255,255,.08);
+  box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.22)}
+
+/* Topbar con vuelta al sitio */
+.topbar{gap:14px}
+.topbar a{color:#fff;opacity:.9;font-weight:600;white-space:nowrap}
+.topbar a:hover{opacity:1;text-decoration:underline}
+.topbar-sep{opacity:.45}
+
+/* Legibilidad: el usuario tipico coordina el cuidado de un familiar mayor */
+.bottom-nav{height:70px}
+.bottom-nav .nav-label{font-size:11px;font-weight:600}
+.bottom-nav svg{width:22px;height:22px}
+.desktop-sidebar a{font-size:14px;font-weight:600}
+.tag{font-size:11px;font-weight:600;padding:5px 10px}
+.notice{border-radius:var(--radius-md)}
+.card{border-radius:var(--radius-lg)}
+.page-head h1{font-size:28px}
+
+/* El logo de landing/login es enlace al sitio */
+.header-inner>a{flex:0 0 auto;display:block}
+
+
+
+/* =========================================================================
+   AJUSTES v3
+   ========================================================================= */
+
+/* ---- Header: mismas medidas que el sitio, en version blanca -------------
+   El sitio usa topbar 42px + nav 82px en desktop y 32/68 en mobile, con
+   logo de 193/163px y links de .92rem. Aca se replican esos valores. */
+@media (min-width:981px){
+  .topbar-inner{height:42px}
+  .header-inner,.portal-header-inner{height:82px}
+  .logo,.portal-header .logo{width:193px}
+}
+
+/* Transparencia al scrolear, igual que .site-header.is-scrolled */
+.header.is-scrolled,.portal-header.is-scrolled{
+  border-bottom-color:transparent;
+  box-shadow:0 10px 30px rgba(8,58,127,.12);
+}
+.header.is-scrolled .header-inner,
+.portal-header.is-scrolled .portal-header-inner{
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(18px) saturate(1.45);
+  -webkit-backdrop-filter:blur(18px) saturate(1.45);
+}
+.header-inner,.portal-header-inner{background:#fff;transition:background .32s ease}
+
+/* El h1 de cada pantalla ya dice lo mismo que el titulo del header */
+@media (max-width:520px){
+  .portal-title{display:none}
+  .logo,.portal-header .logo{width:130px}
+  .header-inner,.portal-header-inner{padding:0 16px;gap:11px}
+  .brand-section{height:18px;padding-left:11px}
+  .header-actions{gap:8px}
+  .header-actions .btn{padding:0 15px;font-size:.78rem}
+}
+
+.header-actions{gap:10px}
+.header-actions .btn{min-height:40px;font-size:.82rem;padding:0 20px}
+
+/* ---- Mockups de celular ------------------------------------------------
+   Montserrat es mas ancha que la fuente de sistema con la que se habian
+   ajustado estos textos miniatura: se reescala todo el mockup. */
+.mock-grid{gap:16px}
+.mock-card .phone{max-width:196px}
+.phone-head b{font-size:11px;font-weight:700;color:var(--c-primary)}
+.mini-card small{font-size:9.5px;color:#c9e8f7;font-weight:600;display:flex;align-items:center;gap:5px}
+.mini-card b{display:block;font-size:17px;font-weight:700;letter-spacing:-.02em;margin:7px 0 3px}
+.mini-card span{font-size:9.5px;opacity:.82;line-height:1.35}
+.mini-item b{display:block;color:var(--c-primary);font-size:10.5px;font-weight:700;line-height:1.3}
+.mini-item span{font-size:9.5px;color:var(--muted);line-height:1.35}
+.mock-copy p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+.dynamic-island{width:64px;height:17px}
+
+/* ---- Eleccion de rol (paso 1 del ingreso) ------------------------------ */
+.pick-wrap{max-width:920px;margin:auto;padding:34px 18px 46px}
+.pick-head{text-align:center;margin-bottom:26px}
+.pick-head h1{margin:0 0 10px;color:var(--c-primary);font-size:clamp(1.7rem,5vw,2.3rem);letter-spacing:-.02em}
+.pick-head p{margin:0;color:var(--muted);font-size:15px;line-height:1.5}
+.pick-grid{display:grid;gap:16px;grid-template-columns:1fr}
+.pick-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);
+  border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-sm);
+  transition:transform var(--t-fast),box-shadow var(--t-fast),border-color var(--t-fast)}
+.pick-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--c-secondary)}
+.pick-photo{height:172px;background:var(--ice);overflow:hidden}
+.pick-photo img{width:100%;height:100%;object-fit:cover;object-position:center 28%}
+.pick-body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+.pick-body h2{margin:0 0 6px;font-size:21px;color:var(--c-primary)}
+.pick-body>p{margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.5}
+.pick-list{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:8px}
+.pick-list li{position:relative;padding-left:24px;font-size:13.5px;color:var(--c-text);line-height:1.45}
+.pick-list li:before{content:"";position:absolute;left:0;top:5px;width:15px;height:15px;border-radius:50%;
+  background:var(--c-secondary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/9px no-repeat}
+.pick-card .btn{margin-top:auto;width:100%}
+.pick-foot{text-align:center;margin-top:24px;color:var(--muted);font-size:13.5px}
+.pick-foot a{color:var(--c-primary);font-weight:600;text-decoration:underline}
+
+/* ---- Login por rol (paso 2) -------------------------------------------- */
+.auth-side .auth-logo{position:relative;z-index:1;height:24px;width:auto;align-self:flex-start;display:block;margin-bottom:14px;object-fit:contain}.role-badge{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:999px;
+  padding:6px 14px;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.auth-side h1{font-size:28px;line-height:1.1}
+.auth-side>p{font-size:14px;line-height:1.5}
+.auth-switch{margin-top:18px;font-size:13px;color:rgba(255,255,255,.86)}
+.auth-switch a{color:#fff;font-weight:600;text-decoration:underline}
+.auth-main h2{font-size:24px;margin:0 0 8px}
+.auth-main>p{font-size:14px;line-height:1.5;margin:0 0 20px}
+.google{height:50px;border:1px solid #cbd8e6;border-radius:999px;font-size:14px;font-weight:600;
+  color:var(--c-text);transition:border-color var(--t-fast),background var(--t-fast)}
+.google:hover{border-color:var(--c-primary);background:var(--c-bg-soft)}
+.divider{margin:18px 0;font-size:12px}
+.field{margin-top:14px}
+.field label{font-size:12.5px;font-weight:600;margin-bottom:6px}
+.field input{height:50px;font-size:14px;padding:0 18px;transition:border-color var(--t-fast)}
+.field input:focus{border-color:var(--c-primary)}
+.auth-submit{margin-top:22px}
+.auth-submit .btn{width:100%}
+.auth-hint{margin-top:16px;padding:12px 14px;border-radius:var(--radius-md);background:var(--c-bg-soft);
+  border:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.45}
+.auth-hint b{color:var(--c-primary);font-weight:600}
+
+/* ---- Calendario mas grande y con las dos cuidadoras -------------------- */
+.date span{display:block;font-size:11px;text-transform:uppercase;font-weight:700;color:var(--muted);letter-spacing:.06em}
+.date b{display:block;font-size:22px;font-weight:700;color:var(--c-primary);line-height:1.15}
+.shift{display:flex;flex-direction:column;gap:3px}
+.shift .shift-time{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.shift .shift-who{font-size:13px;font-weight:500;color:var(--muted)}
+.shift.tarde{border-left-color:var(--c-secondary)}
+.shift.manana{border-left-color:var(--c-prevenite)}
+.shift.off{background:#f4f6f9;border-left-color:#d7dee7;color:var(--muted)}
+.shift.off .shift-time{font-weight:600;font-size:14px;color:var(--muted)}
+.cal-legend{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:16px;font-size:13px;color:var(--muted)}
+.cal-legend span{display:inline-flex;align-items:center;gap:7px}
+.cal-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.cal-legend .i-tarde{background:var(--c-secondary)}
+.cal-legend .i-manana{background:var(--c-prevenite)}
+.cal-legend .i-off{background:#d7dee7}
+
+/* ---- Ficha de cuidadora (dos, no una) ---------------------------------- */
+.care-grid{display:grid;gap:14px;grid-template-columns:1fr}
+.care-card .turno-chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;
+  padding:5px 11px;border-radius:999px;margin-bottom:8px}
+.turno-chip.tarde{background:#e2f4fc;color:#0b5f80}
+.turno-chip.manana{background:#dcf6ef;color:#0e6b58}
+
+/* ---- Landing: bloques de marketing ------------------------------------ */
+.trust{background:var(--c-primary);color:#fff;padding:20px 0}
+.trust-grid{display:grid;gap:18px;grid-template-columns:1fr;text-align:center}
+.trust-item strong{display:block;font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.trust-item span{display:block;font-size:13px;color:#c6dcf3;margin-top:4px;line-height:1.4}
+
+.section{padding:52px 0}
+.section.alt{background:var(--c-bg-soft)}
+.section-head{margin-bottom:28px;max-width:640px}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.section-head h2{margin:0 0 10px;color:var(--c-primary);font-size:clamp(1.55rem,4.6vw,2.15rem);
+  line-height:1.12;letter-spacing:-.025em}
+.section-head p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+
+.benefit-grid{display:grid;gap:14px;grid-template-columns:1fr}
+.benefit{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px 22px;
+  transition:transform var(--t-fast),box-shadow var(--t-fast)}
+.benefit:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.benefit-ico{width:46px;height:46px;border-radius:14px;background:var(--c-bg-alt);color:var(--c-primary);
+  display:grid;place-items:center;margin-bottom:15px}
+.benefit-ico svg{width:23px;height:23px}
+.benefit strong{display:block;color:var(--c-primary);font-size:17px;margin-bottom:7px}
+.benefit p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+
+.audience{display:grid;gap:16px;grid-template-columns:1fr}
+.aud-card{position:relative;overflow:hidden;border-radius:var(--radius-xl);min-height:270px;
+  display:flex;align-items:flex-end;padding:26px;color:#fff;isolation:isolate;
+  background:var(--c-primary) center/cover no-repeat}
+.aud-card:before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(0deg,rgba(8,58,127,.94) 12%,rgba(8,58,127,.55) 62%,rgba(8,58,127,.2) 100%)}
+.aud-card h3{margin:0 0 8px;color:#fff;font-size:22px}
+.aud-card p{margin:0 0 16px;font-size:14px;line-height:1.5;color:rgba(255,255,255,.93)}
+.aud-card .btn{background:#fff;color:var(--c-primary);border-color:#fff}
+.aud-card .btn:hover{background:var(--c-secondary);color:var(--c-primary)}
+
+.steps{display:grid;gap:16px;grid-template-columns:1fr;counter-reset:paso}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px 22px}
+.step:before{counter-increment:paso;content:counter(paso);display:grid;place-items:center;
+  width:38px;height:38px;border-radius:50%;background:var(--c-primary);color:#fff;
+  font-size:16px;font-weight:700;margin-bottom:14px}
+.step strong{display:block;color:var(--c-primary);font-size:16px;margin-bottom:6px}
+.step p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+
+.cta-final{background:var(--gradient-primary);color:#fff;padding:52px 0;text-align:center}
+.cta-final h2{color:#fff;margin:0 0 12px;font-size:clamp(1.6rem,4.8vw,2.3rem);line-height:1.14;letter-spacing:-.025em}
+.cta-final p{margin:0 auto 24px;max-width:520px;font-size:15px;line-height:1.55;color:rgba(255,255,255,.93)}
+.cta-final .btn-primary{background:#fff;color:var(--c-primary)}
+.cta-final .btn-primary:hover{background:var(--c-secondary);color:var(--c-primary)}
+.cta-final .btn-outline{border-color:#fff;color:#fff;background:transparent}
+.cta-final .btn-outline:hover{background:#fff;color:var(--c-primary)}
+.cta-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+.landing-foot{background:#06306a;color:rgba(255,255,255,.72);padding:22px 0;font-size:13px}
+.landing-foot .container{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.landing-foot a{color:#fff;font-weight:600}
+
+/* ---- Breakpoints ------------------------------------------------------- */
+@media (min-width:720px){
+  /* el CSS original ponia el mockup en 2 columnas de 100px: ahora va apilado */
+  .mock-card{grid-template-columns:1fr}
+  .trust-grid{grid-template-columns:repeat(3,1fr)}
+  .benefit-grid{grid-template-columns:repeat(3,1fr)}
+  .mock-grid{grid-template-columns:repeat(3,1fr)}
+  .pick-grid{grid-template-columns:1fr 1fr}
+  .audience{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:repeat(3,1fr)}
+  .care-grid{grid-template-columns:1fr 1fr}
+  .auth-card{grid-template-columns:.85fr 1.15fr}
+  .section{padding:66px 0}
+}
+@media (min-width:900px){
+  #family-calendar .schedule{grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+  #family-calendar .schedule-day{grid-template-columns:1fr;align-items:stretch;gap:10px;padding:14px 10px}
+  #family-calendar .date{text-align:left}
+  #family-calendar .date b{font-size:24px}
+  #family-calendar .shift{padding:11px 10px;min-height:76px;justify-content:center}
+  #family-calendar .shift .shift-time{font-size:13.5px}
+  #family-calendar .shift .shift-who{font-size:12px}
+  .profile-hero{grid-template-columns:120px minmax(0,1fr)}
+  .profile-hero img{width:120px;height:138px}
+}
+
+/* Bloque de usuario en la sidebar de escritorio */
+.du-name{display:block;font-size:14px;font-weight:600;color:var(--c-primary)}
+.du-role{font-size:12.5px;color:var(--muted);margin-top:2px}
+.du-link{display:inline-block;margin-top:10px;font-size:13px;color:var(--c-primary);font-weight:600}
+.du-link:hover{text-decoration:underline}
+.profile-initials{width:80px;height:80px;border-radius:50%;background:var(--ice);
+  display:grid;place-items:center;color:var(--c-primary);font-size:26px;font-weight:700}
+
+/* Foto de la tarjeta de rol: encuadre en la cara */
+.pick-photo{height:190px}
+.pick-card.rol-cuidadora .pick-photo img{object-position:center 18%}
+
+/* Boton secundario dentro de la tarjeta azul */
+.btn-outline.on-blue{background:transparent;border-color:rgba(255,255,255,.7);color:#fff}
+.btn-outline.on-blue:hover{background:#fff;color:var(--c-primary);border-color:#fff}
+
+/* =========================================================================
+   AJUSTES v4
+   ========================================================================= */
+
+/* ---- Cuando hay una pantalla abierta, la landing se saca del flujo -------
+   Si no, el scroll encadena al body y se ve la landing por detras. */
+body.route-open #landing{display:none}
+body.route-open{overflow:hidden}
+
+/* ---- Titulos: mismo patron que el sitio --------------------------------
+   eyebrow celeste en mayuscula + h2 en dos tonos + bajada gris, centrado. */
+.section-header{text-align:center;max-width:760px;margin:0 auto 40px}
+.section-header .eyebrow{display:inline-block;color:var(--c-secondary);font-weight:600;
+  font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.section-header h2{margin:0 0 14px;color:var(--c-primary);font-size:clamp(1.6rem,3vw,2.3rem);
+  line-height:1.2;letter-spacing:-.01em;font-weight:700}
+.section-header h2 .text-celeste{color:var(--c-secondary)}
+.section-header p{margin:0;color:var(--c-text-muted);font-size:1.05rem;line-height:1.55}
+.section-header-light h2{color:#fff}
+.section-header-light .eyebrow{color:rgba(255,255,255,.85)}
+.section-header-light p{color:rgba(255,255,255,.92)}
+.section-header-light h2 .text-celeste{color:var(--c-secondary)}
+
+/* El hero usa el mismo eyebrow del sitio, en version pill sobre azul */
+.hero .eyebrow{letter-spacing:.14em;font-size:.8rem}
+
+/* ---- Mockups: capturas reales del portal dentro del marco -------------- */
+.phone-screen{display:block;width:100%;height:auto;border-radius:0}
+.phone-shell{background:#fff;border-radius:26px;overflow:hidden;line-height:0}
+.phone-notch{position:relative;height:0}
+.phone-notch:before{content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);
+  width:64px;height:17px;border-radius:999px;background:#101010;z-index:2}
+
+/* ---- Tarjetas de audiencia: encuadre correcto de las fotos ------------- */
+.aud-card{background-position:center 22%}
+.aud-card.aud-prof{background-position:center 12%}
+
+/* ---- Login: panel con imagen ------------------------------------------- */
+.auth-side{position:relative;isolation:isolate;overflow:hidden;justify-content:flex-end;min-height:300px}
+.auth-side>*{position:relative;z-index:1}
+.auth-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center 22%}
+.auth-bg:after{content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(6,40,90,.96) 22%,rgba(8,58,127,.78) 58%,rgba(8,58,127,.42) 100%)}
+.auth-side h1{margin-top:0}
+
+/* ---- Equipo: 3 profesionales ------------------------------------------- */
+.turno-chip.kine{background:#e6e9fb;color:#3b3f8f}
+.shift.kine{border-left-color:#6C74D8}
+.cal-legend .i-kine{background:#6C74D8}
+.care-grid{grid-template-columns:1fr}
+@media (min-width:820px){.care-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1180px){.care-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.care-card .profile-hero{grid-template-columns:88px minmax(0,1fr);gap:14px}
+.care-card .profile-hero img{width:88px;height:102px;object-fit:cover;border-radius:16px}
+.care-card .profile-hero h2{font-size:19px}
+.care-card .data-grid{grid-template-columns:1fr 1fr}
+
+/* ---- Calendario de dos semanas ----------------------------------------- */
+.week{margin-bottom:22px}
+.week:last-child{margin-bottom:0}
+.week-title{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+.week-title h3{margin:0;font-size:16px;color:var(--c-primary)}
+.week-title span{font-size:13px;color:var(--muted)}
+.week-title .chip-hoy{background:var(--c-secondary);color:var(--c-primary);font-size:11px;
+  font-weight:700;padding:3px 9px;border-radius:999px}
+
+/* Un dia puede tener mas de un turno (por ej. kinesiologia + cuidadora) */
+.shift-stack{display:grid;gap:7px;min-width:0}
+
+/* Titulo del paso 1 del ingreso */
+.pick-head h2{margin-bottom:12px}
+.pick-wrap .section-header{margin-bottom:30px}
+
+/* Marco del celular con captura real adentro */
+.phone-top{background:var(--c-primary)}
+.phone-screen{display:block;width:100%;height:auto}
+.mock-card{padding:26px 20px 28px}
+.mock-card .phone{max-width:206px}
+
+/* Fotos del equipo: encuadre en la cara, no en el torso */
+.care-card .profile-hero img{object-position:center 18%}
+
+/* Evitar cortes feos de palabra en celdas angostas */
+.data strong,.list-item strong,.stat strong{word-break:normal;overflow-wrap:break-word;hyphens:auto}
+.care-card .data strong{font-size:12.5px;line-height:1.35}
+.care-card .data span{font-size:11px}
+
+/* Fichas del equipo: una columna de datos evita cortes de palabra */
+.care-card .data-grid{grid-template-columns:1fr;gap:8px}
+.care-card .data{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:10px 12px}
+.care-card .data span{flex:0 0 auto}
+.care-card .data strong{text-align:right;font-size:13px}
+.data strong,.list-item strong,.stat strong{hyphens:none}
+.care-card .profile-hero img{object-position:center 25%}
+
+/* Encabezado de semana: en mobile el titulo y el chip se apilan sin cortarse */
+.week-title{flex-wrap:wrap;row-gap:4px}
+.week-title h3{white-space:nowrap}
+.week-title .chip-hoy{white-space:nowrap}
+@media (max-width:430px){
+  .week-title{align-items:center}
+  .week-title span{flex:1 1 100%;order:3}
+}
+
+
+/* ---- Hero v5: una sola columna, alineado a la izquierda ----------------
+   Usa el contenedor estandar para que el titulo arranque en la misma
+   linea vertical que el contenido de las secciones de abajo. */
+.hero .container{max-width:var(--container)}
+.hero-copy{text-align:left;padding:0;max-width:820px}
+.hero .eyebrow{margin-bottom:18px}
+.hero h1{font-size:clamp(1.45rem,7.2vw,3.05rem);margin:0 0 16px}
+.hero p{margin:0 0 26px;max-width:34em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-start}
+.hero-actions .btn{width:auto}
+@media (max-width:520px){
+  .hero{padding:44px 0 48px}
+  .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+  .hero-actions .btn{width:100%}
+}
+
+/* =========================================================================
+   PARTE PROFESIONAL — v5
+   ========================================================================= */
+
+/* ---- Mapa ilustrado (SVG propio, sin servicio externo) ----------------- */
+.map{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:14px;box-shadow:var(--shadow-sm)}
+.map-canvas{position:relative;border-radius:var(--radius-md);overflow:hidden;
+  background:#E6EDF4;line-height:0}
+.map-svg{display:block;width:100%;height:auto}
+.map-chip{position:absolute;left:50%;top:50%;transform:translate(-50%,-118%);
+  background:#fff;color:var(--c-primary);font-size:12px;font-weight:700;
+  padding:6px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(8,58,127,.22);
+  white-space:nowrap;line-height:1}
+.map-info{margin-top:14px;display:flex;align-items:center;justify-content:space-between;
+  gap:14px;flex-wrap:wrap}
+.map-info strong{display:block;font-size:15px;color:var(--c-primary)}
+.map-info span{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.map-note{margin:12px 0 0;font-size:12px;color:var(--muted);line-height:1.45}
+
+/* Mini mapa de la agenda */
+.mini-map{display:grid;grid-template-columns:66px minmax(0,1fr) auto;gap:12px;align-items:center;
+  border:1px solid var(--line);border-radius:var(--radius-md);padding:10px;background:#fff;
+  transition:border-color var(--t-fast),background var(--t-fast)}
+.mini-map:hover{border-color:var(--c-secondary);background:var(--c-bg-soft)}
+.mini-map-canvas{width:66px;height:56px;border-radius:11px;display:block;
+  background:
+    radial-gradient(circle at 62% 46%, #083A7F 0 4px, transparent 5px),
+    radial-gradient(circle at 62% 46%, rgba(81,192,237,.35) 0 11px, transparent 12px),
+    linear-gradient(90deg,transparent 0 30%,#fff 30% 40%,transparent 40%),
+    linear-gradient(0deg,transparent 0 40%,#fff 40% 52%,transparent 52%),
+    #E6EDF4}
+.mini-map-txt strong{display:block;font-size:14px;color:var(--c-primary)}
+.mini-map-txt span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+.mini-map b{color:var(--c-primary);font-size:18px}
+
+/* ---- Lista clave/valor (reemplaza la grilla de cajas azules) ----------- */
+.kv{display:grid}
+.kv-row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+  padding:12px 2px;border-bottom:1px solid var(--line)}
+.kv-row:last-child{border-bottom:0;padding-bottom:2px}
+.kv-row>span{flex:0 0 auto;font-size:13px;color:var(--muted)}
+.kv-row>strong{text-align:right;font-size:14px;font-weight:600;color:var(--c-primary)}
+.kv-row a{color:var(--c-primary);text-decoration:underline}
+
+/* ---- Ficha del paciente ------------------------------------------------ */
+.patient-hero{display:grid;grid-template-columns:56px minmax(0,1fr);gap:14px;align-items:center;
+  padding-bottom:14px;margin-bottom:4px;border-bottom:1px solid var(--line)}
+.patient-ini{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;
+  background:var(--ice);color:var(--c-primary);font-size:17px;font-weight:700}
+.patient-hero h2{margin:0 0 3px;font-size:20px}
+.patient-hero p{margin:0 0 8px;font-size:13.5px;color:var(--muted)}
+.state-chip{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;
+  padding:5px 12px;border-radius:999px}
+.state-chip:before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.state-chip.ok{background:#e3f6ee;color:#1c7a5c}
+
+/* ---- Indicaciones ------------------------------------------------------ */
+.notes{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.notes li{position:relative;padding-left:26px;font-size:14px;line-height:1.5;color:var(--c-text)}
+.notes li:before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;
+  background:var(--c-bg-alt) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23083A7F' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/9px no-repeat}
+
+/* La tarjeta del mapa a lo ancho en escritorio */
+@media (min-width:900px){
+  .map{padding:16px}
+  .map-info strong{font-size:16px}
+}
+
+/* El .map-canvas original tenia height:170px fijo y aplastaba el SVG */
+.map-canvas{height:auto;background:none}
+.map-chip{left:27.8%;top:59.5%;transform:translate(-50%,-190%)}
+/* pin del mapa 2:1 */
+.map-chip{left:27.8%;top:60%;transform:translate(-50%,-200%)}
+
+/* ---- Canales de contacto ----------------------------------------------- */
+.channels{display:grid;gap:10px}
+.channel{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:14px;align-items:center;
+  border:1px solid var(--line);border-radius:var(--radius-md);padding:12px 14px;background:#fff;
+  transition:border-color var(--t-fast),box-shadow var(--t-fast)}
+.channel:hover{border-color:var(--c-secondary);box-shadow:var(--shadow-sm)}
+.channel-ico{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;
+  background:var(--c-bg-alt);color:var(--c-primary)}
+.channel-ico svg{width:21px;height:21px}
+.channel-ico.urg{background:#fdeeee;color:#b23b3b}
+.channel-txt{min-width:0}
+.channel-txt strong{display:block;font-size:15px;color:var(--c-primary);line-height:1.3}
+.channel-txt span{display:block;font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px}
+.channel .btn{flex:0 0 auto}
+@media (max-width:430px){
+  .channel{grid-template-columns:40px minmax(0,1fr);row-gap:10px}
+  .channel-ico{width:40px;height:40px;border-radius:12px}
+  .channel .btn{grid-column:1 / -1;width:100%}
+}
+
+</style>
+</head><body>
+<div id="landing" class="landing"><header class="header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="header-inner"><a href="index.html" aria-label="Ir al sitio de SIEMPRE"><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"></a><img class="brand-section" src="assets/img/misiempre.svg" alt="Mi Siempre"><div class="header-actions"><a class="btn btn-outline btn-sm" href="#login">Ingresar</a><a class="btn btn-primary btn-sm hide-mobile" href="#login">Registrarme</a></div></div></header><main><section class="hero"><div class="container"><div class="hero-copy"><div class="eyebrow">Portal de clientes</div><img class="hero-logo" src="assets/img/misiempre blanco.svg" alt="Mi Siempre"><h1>La tranquilidad<br>de saber que todo<span class="accent">está organizado</span></h1><p>El espacio digital de SIEMPRE para seguir el cuidado de tu familiar: turnos, profesionales asignados y contactos, siempre a mano y sin tener que llamar.</p><div class="hero-actions"><a class="btn btn-primary" href="#login">Ingresar a Mi Siempre</a><a class="btn btn-outline" href="#login">Crear mi cuenta</a></div></div></div></section><section class="trust"><div class="container"><div class="trust-grid"><div class="trust-item"><strong>Sin costo</strong><span>Incluido en tu servicio de SIEMPRE</span></div><div class="trust-item"><strong>24/7</strong><span>Consultá la información cuando la necesites</span></div><div class="trust-item"><strong>+20 años</strong><span>De experiencia en cuidados domiciliarios</span></div></div></div></section><section class="section"><div class="container"><div class="section-header"><span class="eyebrow">Qué podés hacer</span><h2>Menos llamados, <br><span class="text-celeste">más tranquilidad</span></h2><p>Todo lo que antes preguntabas por teléfono, ahora lo consultás en el momento.</p></div><div class="benefit-grid"><article class="benefit"><div class="benefit-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15.5" rx="3.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 2.8v4M16 2.8v4M3.5 10h17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><strong>Turnos y calendario</strong><p>Mirá los próximos turnos, los horarios de la semana y cualquier cambio programado, con el profesional de cada día.</p></article><article class="benefit"><div class="benefit-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 12.5a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div><strong>Quién te acompaña</strong><p>Conocé el perfil de cada profesional asignado —cuidadoras, enfermería, kinesiología— con su experiencia y las validaciones de SIEMPRE.</p></article><article class="benefit"><div class="benefit-ico"><svg viewBox="0 0 24 24" fill="none"><path d="M4.2 5.4A1.2 1.2 0 0 1 5.4 4.2h2.4a1.2 1.2 0 0 1 1.2.9l.9 3.6a1.2 1.2 0 0 1-.35 1.16l-1.15 1.1c1.08 2.09 2.51 3.52 4.6 4.6l1.1-1.15a1.2 1.2 0 0 1 1.16-.35l3.6.9a1.2 1.2 0 0 1 .9 1.2v2.4a1.2 1.2 0 0 1-1.2 1.2C10.6 19.76 4.2 13.36 4.2 5.4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div><strong>Contactos directos</strong><p>Coordinación, guardia 24 h y administración a un toque, sin buscar números ni esperar en línea.</p></article></div></div></section><section class="section alt"><div class="container"><div class="section-header"><span class="eyebrow">El portal</span><h2>Todo lo importante, <br><span class="text-celeste">desde el celular</span></h2><p>Estas son las mismas pantallas que vas a recorrer en el prototipo.</p></div><div class="mock-grid"><article class="mock-card"><div class="phone"><div class="phone-shell"><div class="phone-top"><div class="dynamic-island"></div></div><img class="phone-screen" src="assets/img/mi-siempre/screen-inicio.png" alt="Pantalla de inicio de Mi Siempre" width="780" height="1690" loading="lazy"></div></div><div class="mock-copy"><strong>Inicio</strong><p>El próximo turno, quién viene hoy y los accesos rápidos.</p></div></article><article class="mock-card"><div class="phone"><div class="phone-shell"><div class="phone-top"><div class="dynamic-island"></div></div><img class="phone-screen" src="assets/img/mi-siempre/screen-calendario.png" alt="Calendario de turnos de Mi Siempre" width="780" height="1690" loading="lazy"></div></div><div class="mock-copy"><strong>Calendario</strong><p>Dos semanas de turnos de un vistazo, con cada profesional identificado.</p></div></article><article class="mock-card"><div class="phone"><div class="phone-shell"><div class="phone-top"><div class="dynamic-island"></div></div><img class="phone-screen" src="assets/img/mi-siempre/screen-equipo.png" alt="Pantalla del equipo asignado en Mi Siempre" width="780" height="1690" loading="lazy"></div></div><div class="mock-copy"><strong>Mi equipo</strong><p>Cuidadoras, enfermería y kinesiología, con perfiles validados por SIEMPRE.</p></div></article></div></div></section><section class="section"><div class="container"><div class="section-header"><span class="eyebrow">Para quién es</span><h2>Un portal, <br><span class="text-celeste">dos miradas del mismo cuidado</span></h2><p>Familias y profesionales ven la información que cada uno necesita.</p></div><div class="audience"><article class="aud-card" style="background-image:url('assets/img/mi-siempre/familia-celular.jpg')"><div><h3>Si sos familiar o paciente</h3><p>Seguí los turnos, conocé a quien acompaña a tu familiar y tené los contactos de coordinación siempre a mano.</p><a class="btn btn-sm" href="#login-familiar">Ingresar como familiar</a></div></article><article class="aud-card aud-prof" style="background-image:url('assets/img/mi-siempre/equipo.jpg')"><div><h3>Si sos profesional de SIEMPRE</h3><p>Tu agenda del día, la dirección con referencias de ingreso, las indicaciones del paciente y a quién avisar ante cualquier novedad.</p><a class="btn btn-sm" href="#login-cuidadora">Ingresar como profesional</a></div></article></div></div></section><section class="section alt"><div class="container"><div class="section-header"><span class="eyebrow">Cómo empezar</span><h2>Empezar te lleva <br><span class="text-celeste">un minuto</span></h2><p>No hace falta instalar nada: funciona desde el navegador del celular.</p></div><div class="steps"><article class="step"><strong>Creá tu cuenta</strong><p>Con el DNI del titular del servicio o tu correo electrónico.</p></article><article class="step"><strong>Confirmá quién sos</strong><p>Familiar o paciente, o profesional de SIEMPRE. Cada perfil ve lo suyo.</p></article><article class="step"><strong>Listo</strong><p>Entrás y ya ves el próximo turno y la cuidadora asignada.</p></article></div></div></section><section class="cta-final"><div class="container"><div class="section-header section-header-light" style="margin-bottom:26px"><span class="eyebrow">Mi Siempre</span><h2>Que el cuidado de tu familia <br><span class="text-celeste">esté siempre claro</span></h2><p>Ingresá al portal y mirá cómo funciona.</p></div><div class="cta-actions"><a class="btn btn-primary" href="#login">Ingresar a Mi Siempre</a><a class="btn btn-outline" href="tel:08003450492">Llamar al 0800 345 0492</a></div></div></section></main><footer class="landing-foot"><div class="container"><span>Mi Siempre · Portal de clientes de SIEMPRE Salud y Bienestar</span><a href="index.html">Volver al sitio →</a></div></footer></div>
+
+<section id="login" class="route"><header class="header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="header-inner"><a href="index.html" aria-label="Ir al sitio de SIEMPRE"><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"></a><img class="brand-section" src="assets/img/misiempre.svg" alt="Mi Siempre"><div class="header-actions"><a class="btn btn-outline btn-sm" href="#landing">Volver</a></div></div></header><div class="pick-wrap"><div class="section-header pick-head"><span class="eyebrow">Ingreso</span><h2>¿Cómo querés <br><span class="text-celeste">ingresar?</span></h2><p>Elegí tu perfil para llevarte a la pantalla que te corresponde. Cada uno ve información distinta.</p></div><div class="pick-grid"><article class="pick-card"><div class="pick-photo"><img src="assets/img/mi-siempre/familia-celular.jpg" alt="Familiar consultando el portal"></div><div class="pick-body"><h2>Soy familiar o paciente</h2><p>Contratás o recibís el servicio de acompañamiento de SIEMPRE.</p><ul class="pick-list"><li>Turnos y calendario de la semana</li><li>Perfil de los profesionales asignados</li><li>Coordinación, guardia y administración</li></ul><a class="btn btn-primary" href="#login-familiar">Continuar</a></div></article><article class="pick-card rol-cuidadora"><div class="pick-photo"><img src="assets/img/mi-siempre/equipo.jpg" alt="Profesionales de SIEMPRE"></div><div class="pick-body"><h2>Soy profesional de SIEMPRE</h2><p>Cuidadora, enfermería, kinesiología u otra especialidad del equipo.</p><ul class="pick-list"><li>Tu agenda y próximos servicios</li><li>Datos, dirección e indicaciones del turno</li><li>Coordinación y guardia operativa 24 h</li></ul><a class="btn btn-sky" href="#login-cuidadora">Continuar</a></div></article></div><p class="pick-foot">¿Todavía no tenés cuenta? <a href="tel:08003450492">Llamanos al 0800 345 0492</a> y te la damos de alta.</p></div></section>
+
+<section id="login-familiar" class="route"><header class="header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="header-inner"><a href="index.html" aria-label="Ir al sitio de SIEMPRE"><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"></a><img class="brand-section" src="assets/img/misiempre.svg" alt="Mi Siempre"><div class="header-actions"><a class="btn btn-outline btn-sm" href="#login">Volver</a></div></div></header><div class="auth-wrap"><div class="auth-card"><aside class="auth-side"><div class="auth-bg" style="background-image:url('assets/img/mi-siempre/familia-celular.jpg')"></div><img class="auth-logo" src="assets/img/misiempre blanco.svg" alt="Mi Siempre"><div class="role-badge">Familiar / Paciente</div><h1>Tu cuidado, más claro.</h1><p>Vas a ver los turnos de la semana, quién acompaña a tu familiar y los contactos de coordinación.</p><div class="auth-switch">¿No sos vos? <a href="#login">Elegir otro perfil</a></div></aside><main class="auth-main"><h2>Ingresar como familiar</h2><p>Accedé con tu cuenta. Este es un prototipo: cualquiera de los accesos te lleva a la demo.</p><a class="google" href="#family-home"><span class="google-g">G</span> Continuar con Google</a><div class="divider">o</div><div class="field"><label>DNI o correo electrónico</label><input placeholder="Ej. 30123456"></div><div class="field"><label>Contraseña</label><input type="password" placeholder="••••••••"></div><div class="auth-submit"><a class="btn btn-primary" href="#family-home">Ingresar</a></div><p class="auth-hint">Vas a entrar a la cuenta de demostración de <b>Santiago L.</b>, familiar responsable de Elena Rodríguez.</p></main></div></div></section>
+
+<section id="login-cuidadora" class="route"><header class="header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="header-inner"><a href="index.html" aria-label="Ir al sitio de SIEMPRE"><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"></a><img class="brand-section" src="assets/img/misiempre.svg" alt="Mi Siempre"><div class="header-actions"><a class="btn btn-outline btn-sm" href="#login">Volver</a></div></div></header><div class="auth-wrap"><div class="auth-card"><aside class="auth-side"><div class="auth-bg" style="background-image:url('assets/img/mi-siempre/equipo.jpg')"></div><img class="auth-logo" src="assets/img/misiempre blanco.svg" alt="Mi Siempre"><div class="role-badge">Profesional</div><h1>Tu agenda, siempre a mano.</h1><p>Vas a ver tus próximos servicios, los datos del turno y a quién avisar ante cualquier novedad.</p><div class="auth-switch">¿No sos vos? <a href="#login">Elegir otro perfil</a></div></aside><main class="auth-main"><h2>Ingresar como profesional</h2><p>Accedé con tu cuenta. Este es un prototipo: cualquiera de los accesos te lleva a la demo.</p><a class="google" href="#caregiver-home"><span class="google-g">G</span> Continuar con Google</a><div class="divider">o</div><div class="field"><label>DNI o correo electrónico</label><input placeholder="Ej. 30123456"></div><div class="field"><label>Contraseña</label><input type="password" placeholder="••••••••"></div><div class="auth-submit"><a class="btn btn-sky" href="#caregiver-home">Ingresar</a></div><p class="auth-hint">Vas a entrar a la cuenta de demostración de <b>Marta Gómez</b>, cuidadora domiciliaria. El portal es el mismo para enfermería, kinesiología y el resto del equipo.</p></main></div></div></section>
+
+<section id="family-home" class="route portal"><header class="portal-header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="portal-header-inner"><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"><img class="portal-title" src="assets/img/misiempre.svg" alt="Mi Siempre"><a class="portal-avatar" href="#family-profile">SL</a></div></header><div class="portal-layout"><aside class="desktop-sidebar"><nav><a class="active" href="#family-home">Inicio</a><a class="" href="#family-calendar">Calendario</a><a class="" href="#family-caregiver">Mi equipo</a><a class="" href="#family-contacts">Contactos</a></nav><div class="desktop-user"><b class="du-name">Santiago L.</b><div class="du-role">Familiar / Paciente</div><a class="du-link" href="#family-profile">Ver mi perfil →</a></div></aside><main class="portal-main"><div class="page-head"><h1>Buen día, Santiago</h1><p>Acá tenés lo importante de hoy.</p></div><div class="grid2"><div class="stack"><article class="card blue"><div class="status"><span class="status-dot"></span> Próximo turno confirmado</div><div class="big-time">14:00 — 20:00</div><div class="person-name">Marta Gómez</div><div class="sub">Cuidadora asignada · Hoy</div><div class="card-actions"><a class="btn btn-sky" href="#family-caregiver">Ver perfil</a><a class="btn btn-outline on-blue" href="#family-contacts">Coordinación</a></div></article><article class="card"><div class="card-title"><h3>Tu semana</h3><a href="#family-calendar">Ver calendario</a></div><div class="schedule"><div class="schedule-day"><div class="date"><span>Lun</span><b>17</b></div><div class="shift tarde"><span class="shift-time">14:00 – 20:00</span><span class="shift-who">Marta Gómez</span></div></div><div class="schedule-day"><div class="date"><span>Mar</span><b>18</b></div><div class="shift manana"><span class="shift-time">08:00 – 14:00</span><span class="shift-who">Laura Benítez</span></div></div><div class="schedule-day"><div class="date"><span>Mié</span><b>19</b></div><div class="shift tarde"><span class="shift-time">14:00 – 20:00</span><span class="shift-who">Marta Gómez</span></div></div><div class="schedule-day"><div class="date"><span>Jue</span><b>20</b></div><div class="shift manana"><span class="shift-time">08:00 – 14:00</span><span class="shift-who">Laura Benítez</span></div></div><div class="schedule-day"><div class="date"><span>Vie</span><b>21</b></div><div class="shift tarde"><span class="shift-time">14:00 – 20:00</span><span class="shift-who">Marta Gómez</span></div></div><div class="schedule-day"><div class="date"><span>Sáb</span><b>22</b></div><div class="shift off"><span class="shift-time">Sin turno</span></div></div><div class="schedule-day"><div class="date"><span>Dom</span><b>23</b></div><div class="shift off"><span class="shift-time">Sin turno</span></div></div></div></article></div><div class="stack"><article class="card"><div class="card-title"><h3>Quién te acompaña hoy</h3><a href="#family-caregiver">Ver perfil</a></div><div class="person-card"><img src="assets/img/mi-siempre/cuidadora.jpg" alt="Marta Gómez"><div><strong>Marta Gómez</strong><p>Cuidadora domiciliaria</p><div class="tags"><span class="tag">8 años de experiencia</span><span class="tag">Perfil verificado</span><span class="tag">Turno tarde</span></div></div></div></article><article class="card"><div class="card-title"><h3>Resumen del cuidado</h3></div><div class="stats"><div class="stat"><span>Esta semana</span><strong>30 horas</strong></div><div class="stat"><span>Turnos</span><strong>5</strong></div><div class="stat"><span>Cuidadoras</span><strong>2 asignadas</strong></div></div></article><article class="card"><div class="card-title"><h3>Contactos importantes</h3><a href="#family-contacts">Ver todos</a></div><div class="list"><a class="list-item" href="#family-contacts"><div><strong>Coordinación</strong><span>Cambios y consultas</span></div><b>›</b></a><a class="list-item" href="#family-contacts"><div><strong>Guardia</strong><span>Situaciones urgentes</span></div><b>›</b></a></div></article><div class="notice"><b>Todo organizado.</b><br>Los próximos cinco turnos ya tienen cuidadora asignada.</div></div></div></main></div><nav class="bottom-nav"><a class="active" href="#family-home"><svg viewBox="0 0 24 24" fill="none"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="nav-label">Inicio</span></a><a class="" href="#family-calendar"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M8 3v4M16 3v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Calendario</span></a><a class="" href="#family-caregiver"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Mi equipo</span></a><a class="" href="#family-contacts"><svg viewBox="0 0 24 24" fill="none"><path d="M19 15.5c-1.2 0-2.3-.2-3.3-.7a1 1 0 0 0-1 .1l-2 1.5a14.4 14.4 0 0 1-5-5l1.5-2a1 1 0 0 0 .1-1A7.9 7.9 0 0 1 8.5 5 1.5 1.5 0 0 0 7 3.5H5A1.5 1.5 0 0 0 3.5 5c0 8.6 6.9 15.5 15.5 15.5A1.5 1.5 0 0 0 20.5 19v-2a1.5 1.5 0 0 0-1.5-1.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Ayuda</span></a></nav></section>
+
+
+
+<section id="family-calendar" class="route portal"><header class="portal-header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="portal-header-inner"><a class="back" href="#family-home">‹</a><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"><div class="portal-title">Calendario</div><a class="portal-avatar" href="#family-profile">SL</a></div></header><div class="portal-layout"><aside class="desktop-sidebar"><nav><a class="" href="#family-home">Inicio</a><a class="active" href="#family-calendar">Calendario</a><a class="" href="#family-caregiver">Mi equipo</a><a class="" href="#family-contacts">Contactos</a></nav><div class="desktop-user"><b class="du-name">Santiago L.</b><div class="du-role">Familiar / Paciente</div><a class="du-link" href="#family-profile">Ver mi perfil →</a></div></aside><main class="portal-main"><div class="page-head"><h1>Calendario del servicio</h1><p>Dos semanas de turnos confirmados con los 3 profesionales asignados.</p></div><article class="card"><div class="cal-legend"><span><i class="i-tarde"></i>Marta Gómez · cuidadora, turno tarde</span><span><i class="i-manana"></i>Laura Benítez · enfermería, turno mañana</span><span><i class="i-kine"></i>Diego Ferrari · kinesiología</span><span><i class="i-off"></i>Sin turno</span></div><div class="week"><div class="week-title"><h3>Esta semana</h3><span>17 al 23 de agosto</span><span class="chip-hoy">Semana actual</span></div><div class="schedule"><div class="schedule-day"><div class="date"><span>Lun</span><b>17</b></div><div class="shift-stack"><div class="shift tarde"><span class="shift-time">14:00 – 20:00</span><span class="shift-who">Marta Gómez</span></div></div></div><div class="schedule-day"><div class="date"><span>Mar</span><b>18</b></div><div class="shift-stack"><div class="shift manana"><span class="shift-time">08:00 – 14:00</span><span class="shift-who">Laura Benítez</span></div></div></div><div class="schedule-day"><div class="date"><span>Mié</span><b>19</b></div><div class="shift-stack"><div class="shift kine"><span class="shift-time">10:00 – 11:00</span><span class="shift-who">Diego Ferrari · kinesiología</span></div><div class="shift tarde"><span class="shift-time">14:00 – 20:00</span><span class="shift-who">Marta Gómez</span></div></div></div><div class="schedule-day"><div class="date"><span>Jue</span><b>20</b></div><div class="shift-stack"><div class="shift manana"><span class="shift-time">08:00 – 14:00</span><span class="shift-who">Laura Benítez</span></div></div></div><div class="schedule-day"><div class="date"><span>Vie</span><b>21</b></div><div class="shift-stack"><div class="shift kine"><span class="shift-time">10:00 – 11:00</span><span class="shift-who">Diego Ferrari · kinesiología</span></div><div class="shift tarde"><span class="shift-time">14:00 – 20:00</span><span class="shift-who">Marta Gómez</span></div></div></div><div class="schedule-day"><div class="date"><span>Sáb</span><b>22</b></div><div class="shift-stack"><div class="shift off"><span class="shift-time">Sin turno</span></div></div></div><div class="schedule-day"><div class="date"><span>Dom</span><b>23</b></div><div class="shift-stack"><div class="shift off"><span class="shift-time">Sin turno</span></div></div></div></div></div><div class="week"><div class="week-title"><h3>Próxima semana</h3><span>24 al 30 de agosto</span></div><div class="schedule"><div class="schedule-day"><div class="date"><span>Lun</span><b>24</b></div><div class="shift-stack"><div class="shift tarde"><span class="shift-time">14:00 – 20:00</span><span class="shift-who">Marta Gómez</span></div></div></div><div class="schedule-day"><div class="date"><span>Mar</span><b>25</b></div><div class="shift-stack"><div class="shift manana"><span class="shift-time">08:00 – 14:00</span><span class="shift-who">Laura Benítez</span></div></div></div><div class="schedule-day"><div class="date"><span>Mié</span><b>26</b></div><div class="shift-stack"><div class="shift kine"><span class="shift-time">10:00 – 11:00</span><span class="shift-who">Diego Ferrari · kinesiología</span></div><div class="shift tarde"><span class="shift-time">14:00 – 20:00</span><span class="shift-who">Marta Gómez</span></div></div></div><div class="schedule-day"><div class="date"><span>Jue</span><b>27</b></div><div class="shift-stack"><div class="shift manana"><span class="shift-time">08:00 – 14:00</span><span class="shift-who">Laura Benítez</span></div></div></div><div class="schedule-day"><div class="date"><span>Vie</span><b>28</b></div><div class="shift-stack"><div class="shift tarde"><span class="shift-time">14:00 – 20:00</span><span class="shift-who">Marta Gómez</span></div></div></div><div class="schedule-day"><div class="date"><span>Sáb</span><b>29</b></div><div class="shift-stack"><div class="shift off"><span class="shift-time">Sin turno</span></div></div></div><div class="schedule-day"><div class="date"><span>Dom</span><b>30</b></div><div class="shift-stack"><div class="shift off"><span class="shift-time">Sin turno</span></div></div></div></div></div></article><article class="card" style="margin-top:11px"><div class="card-title"><h3>Cambios programados</h3></div><div class="list"><div class="list-item"><div><strong>Martes 18</strong><span>Laura Benítez cubre el turno mañana de 08:00 a 14:00.</span></div></div><div class="list-item"><div><strong>Viernes 28</strong><span>Esa semana no hay sesión de kinesiología: Diego Ferrari retoma el 2 de septiembre.</span></div></div></div></article></main></div><nav class="bottom-nav"><a class="" href="#family-home"><svg viewBox="0 0 24 24" fill="none"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="nav-label">Inicio</span></a><a class="active" href="#family-calendar"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M8 3v4M16 3v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Calendario</span></a><a class="" href="#family-caregiver"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Mi equipo</span></a><a class="" href="#family-contacts"><svg viewBox="0 0 24 24" fill="none"><path d="M19 15.5c-1.2 0-2.3-.2-3.3-.7a1 1 0 0 0-1 .1l-2 1.5a14.4 14.4 0 0 1-5-5l1.5-2a1 1 0 0 0 .1-1A7.9 7.9 0 0 1 8.5 5 1.5 1.5 0 0 0 7 3.5H5A1.5 1.5 0 0 0 3.5 5c0 8.6 6.9 15.5 15.5 15.5A1.5 1.5 0 0 0 20.5 19v-2a1.5 1.5 0 0 0-1.5-1.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Ayuda</span></a></nav></section>
+
+
+
+<section id="family-caregiver" class="route portal"><header class="portal-header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="portal-header-inner"><a class="back" href="#family-home">‹</a><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"><div class="portal-title">Mi equipo</div><a class="portal-avatar" href="#family-profile">SL</a></div></header><div class="portal-layout"><aside class="desktop-sidebar"><nav><a class="" href="#family-home">Inicio</a><a class="" href="#family-calendar">Calendario</a><a class="active" href="#family-caregiver">Mi equipo</a><a class="" href="#family-contacts">Contactos</a></nav><div class="desktop-user"><b class="du-name">Santiago L.</b><div class="du-role">Familiar / Paciente</div><a class="du-link" href="#family-profile">Ver mi perfil →</a></div></aside><main class="portal-main"><div class="page-head"><h1>Mi equipo</h1><p>Los 3 profesionales asignados a Elena Rodríguez. Información validada por SIEMPRE.</p></div><div class="care-grid"><article class="card care-card"><div class="turno-chip tarde">Turno tarde · 14 a 20 h</div><div class="profile-hero"><img src="assets/img/mi-siempre/cuidadora.jpg" alt="Marta Gómez"><div><h2>Marta Gómez</h2><p>Cuidadora domiciliaria · Perfil verificado</p><div class="tags"><span class="tag">Adultos mayores</span><span class="tag">Zona Sur</span><span class="tag">Lun, Mié y Vie</span></div></div></div><div class="data-grid"><div class="data"><span>Experiencia</span><strong>8 años</strong></div><div class="data"><span>Especialidad</span><strong>Acompañamiento</strong></div><div class="data"><span>Validaciones</span><strong>Antecedentes y referencias</strong></div><div class="data"><span>Estado</span><strong>Activa</strong></div></div></article><article class="card care-card"><div class="turno-chip manana">Turno mañana · 8 a 14 h</div><div class="profile-hero"><img src="assets/img/mi-siempre/cuidadora-2.jpg" alt="Laura Benítez"><div><h2>Laura Benítez</h2><p>Auxiliar de enfermería · Perfil verificado</p><div class="tags"><span class="tag">Adultos mayores</span><span class="tag">Zona Sur</span><span class="tag">Mar y Jue</span></div></div></div><div class="data-grid"><div class="data"><span>Experiencia</span><strong>5 años</strong></div><div class="data"><span>Especialidad</span><strong>Auxiliar de enfermería</strong></div><div class="data"><span>Validaciones</span><strong>Antecedentes y referencias</strong></div><div class="data"><span>Estado</span><strong>Activa</strong></div></div></article><article class="card care-card"><div class="turno-chip kine">Sesiones · Mié y Vie, 10 a 11 h</div><div class="profile-hero"><img src="assets/img/mi-siempre/kinesiologo.jpg" alt="Diego Ferrari"><div><h2>Diego Ferrari</h2><p>Kinesiólogo · Matrícula verificada</p><div class="tags"><span class="tag">Rehabilitación motriz</span><span class="tag">Zona Sur</span><span class="tag">2 sesiones semanales</span></div></div></div><div class="data-grid"><div class="data"><span>Experiencia</span><strong>11 años</strong></div><div class="data"><span>Especialidad</span><strong>Rehabilitación motriz</strong></div><div class="data"><span>Matrícula</span><strong>MN 48.221 · verificada</strong></div><div class="data"><span>Estado</span><strong>Activo</strong></div></div></article></div><div class="notice warning" style="margin-top:14px">Mi Siempre muestra información profesional relevante. No expone domicilio, documentación personal ni otros datos sensibles del equipo.</div></main></div><nav class="bottom-nav"><a class="" href="#family-home"><svg viewBox="0 0 24 24" fill="none"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="nav-label">Inicio</span></a><a class="" href="#family-calendar"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M8 3v4M16 3v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Calendario</span></a><a class="active" href="#family-caregiver"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Mi equipo</span></a><a class="" href="#family-contacts"><svg viewBox="0 0 24 24" fill="none"><path d="M19 15.5c-1.2 0-2.3-.2-3.3-.7a1 1 0 0 0-1 .1l-2 1.5a14.4 14.4 0 0 1-5-5l1.5-2a1 1 0 0 0 .1-1A7.9 7.9 0 0 1 8.5 5 1.5 1.5 0 0 0 7 3.5H5A1.5 1.5 0 0 0 3.5 5c0 8.6 6.9 15.5 15.5 15.5A1.5 1.5 0 0 0 20.5 19v-2a1.5 1.5 0 0 0-1.5-1.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Ayuda</span></a></nav></section>
+
+
+
+<section id="family-contacts" class="route portal"><header class="portal-header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="portal-header-inner"><a class="back" href="#family-home">‹</a><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"><div class="portal-title">Contactos</div><a class="portal-avatar" href="#family-profile">SL</a></div></header><div class="portal-layout"><aside class="desktop-sidebar"><nav><a class="" href="#family-home">Inicio</a><a class="" href="#family-calendar">Calendario</a><a class="" href="#family-caregiver">Mi equipo</a><a class="active" href="#family-contacts">Contactos</a></nav><div class="desktop-user"><b class="du-name">Santiago L.</b><div class="du-role">Familiar / Paciente</div><a class="du-link" href="#family-profile">Ver mi perfil →</a></div></aside><main class="portal-main"><div class="page-head"><h1>Contactos importantes</h1><p>Elegí el canal según lo que necesitás resolver.</p></div><article class="card"><div class="channels"><div class="channel"><span class="channel-ico "><svg viewBox="0 0 24 24" fill="none"><path d="M4.2 5.4A1.2 1.2 0 0 1 5.4 4.2h2.4a1.2 1.2 0 0 1 1.2.9l.9 3.6a1.2 1.2 0 0 1-.35 1.16l-1.15 1.1c1.08 2.09 2.51 3.52 4.6 4.6l1.1-1.15a1.2 1.2 0 0 1 1.16-.35l3.6.9a1.2 1.2 0 0 1 .9 1.2v2.4a1.2 1.2 0 0 1-1.2 1.2C10.6 19.76 4.2 13.36 4.2 5.4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><div class="channel-txt"><strong>Coordinación del servicio</strong><span>Cambios de turno y consultas · Lun a vie, 8 a 20 h</span></div><a class="btn btn-soft btn-sm" href="tel:1126519355">Llamar</a></div><div class="channel"><span class="channel-ico urg"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3.2 21 19H3l9-15.8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 9.5v4.2M12 16.4h.01" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></span><div class="channel-txt"><strong>Guardia operativa 24 h</strong><span>Situaciones urgentes o un profesional que no llegó</span></div><a class="btn btn-soft btn-sm" href="tel:08003450492">Llamar</a></div><div class="channel"><span class="channel-ico "><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h7l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M13 3v5h5M8.5 13h7M8.5 16.5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><div class="channel-txt"><strong>Administración</strong><span>Facturación y documentación</span></div><a class="btn btn-soft btn-sm" href="tel:08003450492">Contactar</a></div><div class="channel"><span class="channel-ico "><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5 14.1c-.2.6-1.2 1.1-1.7 1.2-.4.1-.9.1-1.5-.1a12 12 0 0 1-1.4-.5c-2.4-1-4-3-4.1-3.2-.1-.2-1-1.3-1-2.6 0-1.2.7-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4-.1.6.4l.7 1.8c.1.1.1.3 0 .5l-.3.4c-.1.1-.2.3-.1.5.5 1 1.3 1.7 2.2 2.2.3.1.4.1.6-.1l.4-.5c.1-.2.3-.2.5-.1l1.7.8c.2.1.4.2.4.3.1.2.1.7-.1 1.4z"/></svg></span><div class="channel-txt"><strong>WhatsApp SIEMPRE</strong><span>Consultas generales</span></div><a class="btn btn-soft btn-sm" href="https://wa.me/541126519355" target=_blank rel=noopener>Escribir</a></div></div></article></main></div><nav class="bottom-nav"><a class="" href="#family-home"><svg viewBox="0 0 24 24" fill="none"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="nav-label">Inicio</span></a><a class="" href="#family-calendar"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M8 3v4M16 3v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Calendario</span></a><a class="" href="#family-caregiver"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Mi equipo</span></a><a class="active" href="#family-contacts"><svg viewBox="0 0 24 24" fill="none"><path d="M19 15.5c-1.2 0-2.3-.2-3.3-.7a1 1 0 0 0-1 .1l-2 1.5a14.4 14.4 0 0 1-5-5l1.5-2a1 1 0 0 0 .1-1A7.9 7.9 0 0 1 8.5 5 1.5 1.5 0 0 0 7 3.5H5A1.5 1.5 0 0 0 3.5 5c0 8.6 6.9 15.5 15.5 15.5A1.5 1.5 0 0 0 20.5 19v-2a1.5 1.5 0 0 0-1.5-1.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Ayuda</span></a></nav></section>
+
+
+
+<section id="family-profile" class="route portal"><header class="portal-header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="portal-header-inner"><a class="back" href="#family-home">‹</a><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"><div class="portal-title">Mi perfil</div><a class="portal-avatar" href="#family-profile">SL</a></div></header><div class="portal-layout"><aside class="desktop-sidebar"><nav><a class="" href="#family-home">Inicio</a><a class="" href="#family-calendar">Calendario</a><a class="" href="#family-caregiver">Mi equipo</a><a class="" href="#family-contacts">Contactos</a></nav><div class="desktop-user"><b class="du-name">Santiago L.</b><div class="du-role">Familiar / Paciente</div><a class="du-link" href="#family-profile">Ver mi perfil →</a></div></aside><main class="portal-main"><div class="page-head"><h1>Mi perfil</h1><p>Información de la cuenta y del servicio asociado.</p></div><article class="card"><div class="profile-hero" style="grid-template-columns:80px minmax(0,1fr)"><div class="profile-initials">SL</div><div><h2>Santiago L.</h2><p>Familiar responsable</p></div></div><div class="data-grid"><div class="data"><span>Paciente asociado</span><strong>Elena Rodríguez</strong></div><div class="data"><span>Relación</span><strong>Familiar responsable</strong></div><div class="data"><span>Servicio</span><strong>Acompañamiento</strong></div><div class="data"><span>Zona</span><strong>Banfield, Buenos Aires</strong></div></div><div style="margin-top:12px"><a class="btn btn-outline btn-sm" href="#landing">Cerrar sesión</a></div></article></main></div><nav class="bottom-nav"><a class="" href="#family-home"><svg viewBox="0 0 24 24" fill="none"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="nav-label">Inicio</span></a><a class="" href="#family-calendar"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M8 3v4M16 3v4M4 10h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Calendario</span></a><a class="" href="#family-caregiver"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Mi equipo</span></a><a class="" href="#family-contacts"><svg viewBox="0 0 24 24" fill="none"><path d="M19 15.5c-1.2 0-2.3-.2-3.3-.7a1 1 0 0 0-1 .1l-2 1.5a14.4 14.4 0 0 1-5-5l1.5-2a1 1 0 0 0 .1-1A7.9 7.9 0 0 1 8.5 5 1.5 1.5 0 0 0 7 3.5H5A1.5 1.5 0 0 0 3.5 5c0 8.6 6.9 15.5 15.5 15.5A1.5 1.5 0 0 0 20.5 19v-2a1.5 1.5 0 0 0-1.5-1.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Ayuda</span></a></nav></section>
+
+
+
+<section id="caregiver-home" class="route portal"><header class="portal-header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="portal-header-inner"><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"><img class="portal-title" src="assets/img/misiempre.svg" alt="Mi Siempre"><a class="portal-avatar" href="#caregiver-profile">MG</a></div></header><div class="portal-layout"><aside class="desktop-sidebar"><nav><a class="active" href="#caregiver-home">Mi agenda</a><a class="" href="#caregiver-service">Datos del servicio</a><a class="" href="#caregiver-map">Ubicación</a><a class="" href="#caregiver-contacts">Contactos</a><a class="" href="#caregiver-profile">Mi perfil</a></nav><div class="desktop-user"><b class="du-name">Marta Gómez</b><div class="du-role">Cuidadora</div></div></aside><main class="portal-main"><div class="page-head"><h1>Hola, Marta</h1><p>Esta es tu agenda de hoy.</p></div><div class="grid2"><div class="stack"><article class="card blue"><div class="status"><span class="status-dot"></span> Próximo turno</div><div class="big-time">14:00 — 20:00</div><div class="person-name">Elena Rodríguez</div><div class="sub">Belgrano 245 · Banfield</div><div class="card-actions"><a class="btn btn-sky" href="#caregiver-service">Ver datos del turno</a><a class="btn btn-outline on-blue" href="#caregiver-contacts">Coordinación</a></div></article><article class="card"><div class="card-title"><h3>Próximos servicios</h3></div><div class="list"><a class="list-item" href="#caregiver-service"><div><strong>Hoy, lunes 17 · 14:00 – 20:00</strong><span>Elena Rodríguez · Banfield</span></div><b>›</b></a><a class="list-item" href="#caregiver-service"><div><strong>Miércoles 19 · 14:00 – 20:00</strong><span>Elena Rodríguez · Banfield</span></div><b>›</b></a><a class="list-item" href="#caregiver-service"><div><strong>Viernes 21 · 14:00 – 20:00</strong><span>Elena Rodríguez · Banfield</span></div><b>›</b></a></div></article></div><div class="stack"><article class="card"><div class="card-title"><h3>Resumen de hoy</h3></div><div class="stats"><div class="stat"><span>Turnos</span><strong>1</strong></div><div class="stat"><span>Horas</span><strong>6 h</strong></div><div class="stat"><span>Zona</span><strong>Banfield</strong></div></div></article><article class="card"><div class="card-title"><h3>Ubicación</h3><a href="#caregiver-map">Ver mapa</a></div><a class="mini-map" href="#caregiver-map"><span class="mini-map-canvas" aria-hidden="true"></span><span class="mini-map-txt"><strong>Belgrano 245, Banfield</strong><span>Referencia: ingresar por recepción</span></span><b>›</b></a></article><div class="notice"><b>Agenda actualizada.</b><br>No hay cambios pendientes para hoy.</div></div></div></main></div><nav class="bottom-nav"><a class="active" href="#caregiver-home"><svg viewBox="0 0 24 24" fill="none"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="nav-label">Agenda</span></a><a class="" href="#caregiver-service"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="12" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 4.5h6M9 9h6M9 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Servicio</span></a><a class="" href="#caregiver-contacts"><svg viewBox="0 0 24 24" fill="none"><path d="M19 15.5c-1.2 0-2.3-.2-3.3-.7a1 1 0 0 0-1 .1l-2 1.5a14.4 14.4 0 0 1-5-5l1.5-2a1 1 0 0 0 .1-1A7.9 7.9 0 0 1 8.5 5 1.5 1.5 0 0 0 7 3.5H5A1.5 1.5 0 0 0 3.5 5c0 8.6 6.9 15.5 15.5 15.5A1.5 1.5 0 0 0 20.5 19v-2a1.5 1.5 0 0 0-1.5-1.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Ayuda</span></a><a class="" href="#caregiver-profile"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Perfil</span></a></nav></section>
+
+
+
+<section id="caregiver-service" class="route portal"><header class="portal-header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="portal-header-inner"><a class="back" href="#caregiver-home">‹</a><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"><div class="portal-title">Datos del servicio</div><a class="portal-avatar" href="#caregiver-profile">MG</a></div></header><div class="portal-layout"><aside class="desktop-sidebar"><nav><a class="" href="#caregiver-home">Mi agenda</a><a class="active" href="#caregiver-service">Datos del servicio</a><a class="" href="#caregiver-map">Ubicación</a><a class="" href="#caregiver-contacts">Contactos</a><a class="" href="#caregiver-profile">Mi perfil</a></nav><div class="desktop-user"><b class="du-name">Marta Gómez</b><div class="du-role">Cuidadora</div></div></aside><main class="portal-main"><div class="page-head"><h1>Servicio de hoy</h1><p>Información útil para realizar el turno con claridad.</p></div><article class="card"><div class="patient-hero"><span class="patient-ini">ER</span><div><h2>Elena Rodríguez</h2><p>Acompañamiento domiciliario</p><span class="state-chip ok">Turno confirmado</span></div></div><div class="kv"><div class="kv-row"><span>Horario</span><strong>14:00 — 20:00 · 6 h</strong></div><div class="kv-row"><span>Dirección</span><strong>Belgrano 245, Banfield</strong></div><div class="kv-row"><span>Localidad</span><strong>Banfield, Buenos Aires</strong></div><div class="kv-row"><span>Ingreso</span><strong>Por recepción · timbre a la izquierda</strong></div></div><div class="card-actions"><a class="btn btn-primary btn-sm" href="#caregiver-map">Ver mapa</a><a class="btn btn-outline btn-sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Belgrano%20245%2C%20Banfield">Cómo llegar</a></div></article><article class="card" style="margin-top:12px"><div class="card-title"><h3>Indicaciones del turno</h3></div><ul class="notes"><li>Avisar al familiar responsable al llegar.</li><li>Registrar cualquier novedad con coordinación.</li><li>La paciente utiliza bastón para desplazamientos largos.</li></ul></article><article class="card" style="margin-top:12px"><div class="card-title"><h3>Contactos del servicio</h3></div><div class="list"><div class="list-item"><div><strong>Familiar responsable</strong><span>Santiago L. · 11 5555 0182</span></div><a class="btn btn-soft btn-sm" href="tel:1155550182">Llamar</a></div><div class="list-item"><div><strong>Coordinación</strong><span>Cambios y consultas del turno</span></div><a class="btn btn-soft btn-sm" href="https://wa.me/541126519355" target="_blank" rel="noopener">WhatsApp</a></div></div></article></main></div><nav class="bottom-nav"><a class="" href="#caregiver-home"><svg viewBox="0 0 24 24" fill="none"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="nav-label">Agenda</span></a><a class="active" href="#caregiver-service"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="12" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 4.5h6M9 9h6M9 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Servicio</span></a><a class="" href="#caregiver-contacts"><svg viewBox="0 0 24 24" fill="none"><path d="M19 15.5c-1.2 0-2.3-.2-3.3-.7a1 1 0 0 0-1 .1l-2 1.5a14.4 14.4 0 0 1-5-5l1.5-2a1 1 0 0 0 .1-1A7.9 7.9 0 0 1 8.5 5 1.5 1.5 0 0 0 7 3.5H5A1.5 1.5 0 0 0 3.5 5c0 8.6 6.9 15.5 15.5 15.5A1.5 1.5 0 0 0 20.5 19v-2a1.5 1.5 0 0 0-1.5-1.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Ayuda</span></a><a class="" href="#caregiver-profile"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Perfil</span></a></nav></section>
+
+
+
+<section id="caregiver-map" class="route portal"><header class="portal-header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="portal-header-inner"><a class="back" href="#caregiver-service">‹</a><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"><div class="portal-title">Ubicación</div><a class="portal-avatar" href="#caregiver-profile">MG</a></div></header><div class="portal-layout"><aside class="desktop-sidebar"><nav><a class="" href="#caregiver-home">Mi agenda</a><a class="" href="#caregiver-service">Datos del servicio</a><a class="active" href="#caregiver-map">Ubicación</a><a class="" href="#caregiver-contacts">Contactos</a><a class="" href="#caregiver-profile">Mi perfil</a></nav><div class="desktop-user"><b class="du-name">Marta Gómez</b><div class="du-role">Cuidadora</div></div></aside><main class="portal-main"><div class="page-head"><h1>Ubicación del servicio</h1><p>Belgrano 245, Banfield, Buenos Aires.</p></div><article class="map"><div class="map-canvas"><svg class="map-svg" viewBox="0 0 640 320" role="img"
+ aria-label="Mapa de referencia de Belgrano 245, Banfield">
+<defs>
+  <filter id="ms-pin-sh" x="-60%" y="-60%" width="220%" height="220%">
+    <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#083A7F" flood-opacity=".35"/>
+  </filter>
+  <clipPath id="ms-clip"><rect x="0" y="0" width="640" height="320"/></clipPath>
+</defs>
+<g clip-path="url(#ms-clip)">
+  <rect width="640" height="320" fill="#E6EDF4"/>
+
+  <g fill="#F6FAFD" stroke="#DCE6F0" stroke-width="1.5">
+    <rect x="-20" y="-20" width="180" height="126" rx="6"/>
+    <rect x="196" y="-20" width="196" height="126" rx="6"/>
+    <rect x="428" y="-20" width="240" height="126" rx="6"/>
+    <rect x="-20" y="134" width="180" height="106" rx="6"/>
+    <rect x="428" y="134" width="240" height="106" rx="6"/>
+    <rect x="-20" y="268" width="180" height="90" rx="6"/>
+    <rect x="196" y="268" width="196" height="90" rx="6"/>
+    <rect x="428" y="268" width="240" height="90" rx="6"/>
+  </g>
+
+  <rect x="196" y="134" width="196" height="106" rx="8" fill="#DCEFE3" stroke="#C4E3D2" stroke-width="1.5"/>
+  <g fill="#9FCFB4"><circle cx="236" cy="166" r="11"/><circle cx="348" cy="176" r="8"/><circle cx="264" cy="214" r="9"/></g>
+  <text x="298" y="196" font-size="13" font-weight="600" fill="#4E8C6C"
+        text-anchor="middle" font-family="Montserrat, sans-serif">Plaza</text>
+
+  <g stroke="#FFFFFF" stroke-linecap="round">
+    <line x1="178" y1="-20" x2="178" y2="340" stroke-width="26"/>
+    <line x1="410" y1="-20" x2="410" y2="340" stroke-width="26"/>
+    <line x1="-20" y1="120" x2="660" y2="120" stroke-width="26"/>
+    <line x1="-20" y1="254" x2="660" y2="254" stroke-width="22"/>
+  </g>
+  <g stroke="#E3EAF2" stroke-width="1">
+    <line x1="165" y1="-20" x2="165" y2="340"/><line x1="191" y1="-20" x2="191" y2="340"/>
+    <line x1="397" y1="-20" x2="397" y2="340"/><line x1="423" y1="-20" x2="423" y2="340"/>
+    <line x1="-20" y1="107" x2="660" y2="107"/><line x1="-20" y1="133" x2="660" y2="133"/>
+    <line x1="-20" y1="243" x2="660" y2="243"/><line x1="-20" y1="265" x2="660" y2="265"/>
+  </g>
+
+  <g font-family="Montserrat, sans-serif" font-size="11" font-weight="600" fill="#8FA2B6">
+    <text x="26" y="116">Av. Hipólito Yrigoyen</text>
+    <text x="452" y="250">Alsina</text>
+    <text transform="translate(174,318) rotate(-90)">Belgrano</text>
+    <text transform="translate(406,92) rotate(-90)">Maipú</text>
+  </g>
+
+  <path d="M84 120 L178 120 L178 176" fill="none" stroke="#51C0ED" stroke-width="4"
+        stroke-linecap="round" stroke-dasharray="2 9" opacity=".95"/>
+
+  <g filter="url(#ms-pin-sh)">
+    <circle cx="178" cy="192" r="25" fill="#51C0ED" opacity=".22"/>
+    <path d="M178 162c-11.2 0-20.2 9-20.2 20.2 0 14.8 20.2 31.8 20.2 31.8s20.2-17 20.2-31.8c0-11.2-9-20.2-20.2-20.2z" fill="#083A7F"/>
+    <circle cx="178" cy="182" r="7.2" fill="#fff"/>
+  </g>
+</g>
+</svg><span class="map-chip">Belgrano 245</span></div><div class="map-info"><div><strong>Belgrano 245, Banfield</strong><span>Buenos Aires · ingresar por recepción</span></div><a class="btn btn-primary btn-sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Belgrano%20245%2C%20Banfield">Abrir en Google Maps</a></div><p class="map-note">El mapa es una referencia del prototipo. El botón abre la dirección real en Google Maps.</p></article><article class="card" style="margin-top:12px"><div class="card-title"><h3>Datos del turno</h3></div><div class="kv"><div class="kv-row"><span>Paciente</span><strong>Elena Rodríguez</strong></div><div class="kv-row"><span>Horario</span><strong>14:00 — 20:00</strong></div><div class="kv-row"><span>Ingreso</span><strong>Por recepción</strong></div><div class="kv-row"><span>Coordinación</span><strong><a href="tel:1126519355">11 2651 9355</a></strong></div></div></article></main></div><nav class="bottom-nav"><a class="" href="#caregiver-home"><svg viewBox="0 0 24 24" fill="none"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="nav-label">Agenda</span></a><a class="" href="#caregiver-service"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="12" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 4.5h6M9 9h6M9 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Servicio</span></a><a class="" href="#caregiver-contacts"><svg viewBox="0 0 24 24" fill="none"><path d="M19 15.5c-1.2 0-2.3-.2-3.3-.7a1 1 0 0 0-1 .1l-2 1.5a14.4 14.4 0 0 1-5-5l1.5-2a1 1 0 0 0 .1-1A7.9 7.9 0 0 1 8.5 5 1.5 1.5 0 0 0 7 3.5H5A1.5 1.5 0 0 0 3.5 5c0 8.6 6.9 15.5 15.5 15.5A1.5 1.5 0 0 0 20.5 19v-2a1.5 1.5 0 0 0-1.5-1.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Ayuda</span></a><a class="" href="#caregiver-profile"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Perfil</span></a></nav></section>
+
+
+
+<section id="caregiver-contacts" class="route portal"><header class="portal-header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="portal-header-inner"><a class="back" href="#caregiver-home">‹</a><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"><div class="portal-title">Contactos</div><a class="portal-avatar" href="#caregiver-profile">MG</a></div></header><div class="portal-layout"><aside class="desktop-sidebar"><nav><a class="" href="#caregiver-home">Mi agenda</a><a class="" href="#caregiver-service">Datos del servicio</a><a class="" href="#caregiver-map">Ubicación</a><a class="active" href="#caregiver-contacts">Contactos</a><a class="" href="#caregiver-profile">Mi perfil</a></nav><div class="desktop-user"><b class="du-name">Marta Gómez</b><div class="du-role">Cuidadora</div></div></aside><main class="portal-main"><div class="page-head"><h1>Contactos de ayuda</h1><p>Canales para resolver dudas o situaciones del servicio.</p></div><article class="card"><div class="channels"><div class="channel"><span class="channel-ico "><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5 14.1c-.2.6-1.2 1.1-1.7 1.2-.4.1-.9.1-1.5-.1a12 12 0 0 1-1.4-.5c-2.4-1-4-3-4.1-3.2-.1-.2-1-1.3-1-2.6 0-1.2.7-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4-.1.6.4l.7 1.8c.1.1.1.3 0 .5l-.3.4c-.1.1-.2.3-.1.5.5 1 1.3 1.7 2.2 2.2.3.1.4.1.6-.1l.4-.5c.1-.2.3-.2.5-.1l1.7.8c.2.1.4.2.4.3.1.2.1.7-.1 1.4z"/></svg></span><div class="channel-txt"><strong>Coordinación</strong><span>Agenda, horarios y pacientes · 11 2651 9355</span></div><a class="btn btn-soft btn-sm" href="https://wa.me/541126519355" target=_blank rel=noopener>WhatsApp</a></div><div class="channel"><span class="channel-ico urg"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3.2 21 19H3l9-15.8Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 9.5v4.2M12 16.4h.01" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></span><div class="channel-txt"><strong>Guardia operativa 24 h</strong><span>Situaciones urgentes durante el turno</span></div><a class="btn btn-soft btn-sm" href="tel:08003450492">Llamar</a></div><div class="channel"><span class="channel-ico "><svg viewBox="0 0 24 24" fill="none"><path d="M6 3h7l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M13 3v5h5M8.5 13h7M8.5 16.5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span><div class="channel-txt"><strong>Administración</strong><span>Documentación, recibos y consultas</span></div><a class="btn btn-soft btn-sm" href="tel:08003450492">Contactar</a></div></div></article></main></div><nav class="bottom-nav"><a class="" href="#caregiver-home"><svg viewBox="0 0 24 24" fill="none"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="nav-label">Agenda</span></a><a class="" href="#caregiver-service"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="12" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 4.5h6M9 9h6M9 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Servicio</span></a><a class="active" href="#caregiver-contacts"><svg viewBox="0 0 24 24" fill="none"><path d="M19 15.5c-1.2 0-2.3-.2-3.3-.7a1 1 0 0 0-1 .1l-2 1.5a14.4 14.4 0 0 1-5-5l1.5-2a1 1 0 0 0 .1-1A7.9 7.9 0 0 1 8.5 5 1.5 1.5 0 0 0 7 3.5H5A1.5 1.5 0 0 0 3.5 5c0 8.6 6.9 15.5 15.5 15.5A1.5 1.5 0 0 0 20.5 19v-2a1.5 1.5 0 0 0-1.5-1.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Ayuda</span></a><a class="" href="#caregiver-profile"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Perfil</span></a></nav></section>
+
+
+
+<section id="caregiver-profile" class="route portal"><header class="portal-header"><div class="topbar"><div class="topbar-inner"><a href="tel:08003450492">0800 345 0492</a><span class="topbar-sep">·</span><a href="index.html">Volver a siemprearg.com</a></div></div><div class="portal-header-inner"><a class="back" href="#caregiver-home">‹</a><img class="logo" src="assets/img/logo-siempre-azul.svg" alt="SIEMPRE"><div class="portal-title">Mi perfil</div><a class="portal-avatar" href="#caregiver-profile">MG</a></div></header><div class="portal-layout"><aside class="desktop-sidebar"><nav><a class="" href="#caregiver-home">Mi agenda</a><a class="" href="#caregiver-service">Datos del servicio</a><a class="" href="#caregiver-map">Ubicación</a><a class="" href="#caregiver-contacts">Contactos</a><a class="active" href="#caregiver-profile">Mi perfil</a></nav><div class="desktop-user"><b class="du-name">Marta Gómez</b><div class="du-role">Cuidadora</div></div></aside><main class="portal-main"><div class="page-head"><h1>Mi perfil</h1><p>Tu información profesional dentro de SIEMPRE.</p></div><article class="card"><div class="profile-hero"><img src="assets/img/mi-siempre/cuidadora.jpg" alt="Marta Gómez"><div><h2>Marta Gómez</h2><p>Cuidadora domiciliaria</p><div class="tags"><span class="tag">Perfil verificado</span><span class="tag">Zona Sur</span></div></div></div><div class="data-grid"><div class="data"><span>Experiencia</span><strong>8 años</strong></div><div class="data"><span>Disponibilidad</span><strong>Turno tarde</strong></div><div class="data"><span>Documentación</span><strong>Al día</strong></div><div class="data"><span>Especialidades</span><strong>Adultos mayores · Acompañamiento</strong></div></div><div style="margin-top:12px"><a class="btn btn-outline btn-sm" href="#landing">Cerrar sesión</a></div></article></main></div><nav class="bottom-nav"><a class="" href="#caregiver-home"><svg viewBox="0 0 24 24" fill="none"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="nav-label">Agenda</span></a><a class="" href="#caregiver-service"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="12" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 4.5h6M9 9h6M9 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Servicio</span></a><a class="" href="#caregiver-contacts"><svg viewBox="0 0 24 24" fill="none"><path d="M19 15.5c-1.2 0-2.3-.2-3.3-.7a1 1 0 0 0-1 .1l-2 1.5a14.4 14.4 0 0 1-5-5l1.5-2a1 1 0 0 0 .1-1A7.9 7.9 0 0 1 8.5 5 1.5 1.5 0 0 0 7 3.5H5A1.5 1.5 0 0 0 3.5 5c0 8.6 6.9 15.5 15.5 15.5A1.5 1.5 0 0 0 20.5 19v-2a1.5 1.5 0 0 0-1.5-1.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nav-label">Ayuda</span></a><a class="active" href="#caregiver-profile"><svg viewBox="0 0 24 24" fill="none"><path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM5 20a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="nav-label">Perfil</span></a></nav></section>
+
+</body></html>
+
+<script>
+(function () {
+  /* 1) Header: transparencia al scrolear, igual que el sitio principal.
+        Cada pantalla (.route) scrollea por dentro porque el ruteo es por :target,
+        asi que se escucha el contenedor visible y no solo window. */
+  function bind(scroller, header) {
+    if (!header) return;
+    function onScroll() {
+      var y = scroller === window ? window.scrollY : scroller.scrollTop;
+      header.classList.toggle('is-scrolled', y > 16);
+    }
+    scroller.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  var landing = document.getElementById('landing');
+  if (landing) bind(window, landing.querySelector('.header'));
+  document.querySelectorAll('.route').forEach(function (r) {
+    bind(r, r.querySelector('.header, .portal-header'));
+  });
+
+  /* 2) Con una pantalla abierta, la landing se saca del flujo: si no, al llegar
+        al final el scroll encadena al body y se ve la landing por detras. */
+  function syncRoute() {
+    var h = window.location.hash;
+    var target = h && h.length > 1 ? document.querySelector(h) : null;
+    var open = !!(target && target.classList.contains('route'));
+    document.body.classList.toggle('route-open', open);
+    if (open) target.scrollTop = 0;
+    else window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', syncRoute);
+  syncRoute();
+})();
+</script>
+
+</body></html>

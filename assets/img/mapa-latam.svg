@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a3a7f"/>
+      <stop offset="60%" stop-color="#1554a5"/>
+      <stop offset="100%" stop-color="#1d70b7"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.15" r="0.55">
+      <stop offset="0%" stop-color="#51C0ED" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#51C0ED" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="pinShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" in="SourceAlpha"/>
+      <feOffset dx="0" dy="6"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.45"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Pin reutilizable -->
+    <symbol id="pin" viewBox="-30 -42 60 60">
+      <path d="M 0 -42 C 16.5 -42 27 -32 27 -16 C 27 0 0 18 0 18 C 0 18 -27 0 -27 -16 C -27 -32 -16.5 -42 0 -42 Z" fill="#fff"/>
+      <circle cx="0" cy="-16" r="17" fill="#fff"/>
+    </symbol>
+  </defs>
+
+  <!-- Fondo azul --><rect width="1000" height="1000" fill="url(#bg)"/>
+  <rect width="1000" height="1000" fill="url(#glow)"/>
+
+  <!-- Conexión punteada México → Chile/Argentina -->
+  <path d="M 760 215 Q 720 480 660 720 Q 700 720 740 740"
+        stroke="rgba(255,255,255,0.32)" stroke-width="2"
+        stroke-dasharray="6 9" fill="none" stroke-linecap="round"/>
+
+  <!-- ===== MÉXICO (silueta más fiel) ===== -->
+  <path d="M 605 175
+           C 615 170 627 168 640 168
+           L 660 165 L 678 162 L 695 159 L 712 158 L 728 160
+           L 742 165 L 754 172 L 765 180 L 778 188 L 790 198
+           L 800 212 L 808 226 L 815 240 L 818 254
+           L 815 268 L 808 278 L 798 285 L 786 290
+           L 775 295 L 768 305 L 762 315 L 760 325
+           L 758 335 L 753 342
+           L 745 340 L 738 332 L 732 322
+           L 725 314 L 718 312 L 712 318
+           L 705 322 L 698 318 L 692 312
+           L 685 304 L 680 296 L 674 290
+           L 666 286 L 658 282 L 650 276
+           L 640 270 L 632 265 L 622 260
+           L 612 254 L 605 246 L 600 238
+           L 596 228 L 595 218 L 596 208
+           L 600 198 L 605 188 Z"
+        fill="rgba(255,255,255,0.10)"
+        stroke="rgba(255,255,255,0.45)"
+        stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- Centroamérica (puente delgado) -->
+  <path d="M 762 315 C 770 335 782 360 798 385 C 815 410 832 432 848 452"
+        stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- ===== SUDAMÉRICA (silueta principal) ===== -->
+  <path d="M 850 460
+           C 870 455 890 460 905 475
+           L 920 495 L 932 520 L 938 545 L 940 570
+           L 935 590 L 925 605 L 912 615
+           L 900 622 L 890 632 L 880 645
+           L 870 660 L 858 670 L 848 678
+           L 835 688 L 822 698 L 810 710
+           L 798 722 L 786 734 L 770 742
+           L 752 745 L 735 742 L 720 736
+           L 705 728 L 692 720 L 680 712
+           L 668 705 L 658 700 L 650 698
+           L 642 700 L 638 706
+           L 640 720 L 645 735 L 650 750
+           L 654 768 L 656 786 L 654 802
+           L 648 818 L 638 830 L 625 838
+           L 615 845 L 608 855 L 605 868
+           L 608 880 L 614 890
+           L 622 894 L 626 888 L 624 878
+           L 628 866 L 638 858 L 650 854
+           L 660 852 L 670 854
+           L 678 858 L 682 862
+           L 686 858 L 688 850 L 686 838
+           L 680 826 L 672 815 L 666 802
+           L 663 788 L 665 774 L 670 760
+           L 678 748 L 690 740 L 705 738
+           L 720 740 L 735 745 L 750 752
+           L 768 758 L 786 762 L 805 762
+           L 822 758 L 838 750 L 850 740
+           L 860 728 L 868 715 L 875 700
+           L 880 685 L 884 668
+           L 884 650 L 882 632
+           L 878 615 L 872 600 L 865 588
+           L 858 578 L 852 568 L 848 558
+           L 846 548 L 848 538 L 852 528
+           L 856 518 L 856 506 L 854 494
+           L 852 482 L 850 470 Z"
+        fill="rgba(255,255,255,0.10)"
+        stroke="rgba(255,255,255,0.45)"
+        stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- ===== ARGENTINA (resaltada) ===== -->
+  <path d="M 645 760
+           L 657 768 L 666 780 L 672 794
+           L 676 810 L 678 826 L 678 842
+           L 676 856 L 670 868 L 662 876
+           L 654 882 L 644 884 L 634 880
+           L 626 872 L 622 860 L 622 845
+           L 624 828 L 628 812 L 632 796
+           L 638 780 Z"
+        fill="rgba(81,192,237,0.40)"
+        stroke="#51C0ED" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- ===== CHILE (resaltada, franja larga al oeste) ===== -->
+  <path d="M 615 765
+           L 623 775 L 626 790 L 627 808
+           L 628 826 L 627 845 L 624 862
+           L 619 875 L 612 882 L 605 884
+           L 600 878 L 598 866 L 599 850
+           L 602 832 L 605 814 L 608 796 L 611 780 Z"
+        fill="rgba(81,192,237,0.40)"
+        stroke="#51C0ED" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- ===== PIN MÉXICO ===== -->
+  <g transform="translate(720,200)" filter="url(#pinShadow)">
+    <use href="#pin"/>
+    <!-- Bandera México: verde / blanco / rojo -->
+    <g transform="translate(-12,-25)">
+      <rect width="8" height="18" fill="#006847"/>
+      <rect x="8" width="8" height="18" fill="#fff"/>
+      <rect x="16" width="8" height="18" fill="#ce1126"/>
+    </g>
+  </g>
+
+  <!-- ===== PIN CHILE ===== -->
+  <g transform="translate(610,830)" filter="url(#pinShadow)">
+    <use href="#pin"/>
+    <g transform="translate(-12,-25)">
+      <rect width="9" height="9" fill="#0033A0"/>
+      <rect x="9" width="15" height="9" fill="#fff"/>
+      <rect y="9" width="24" height="9" fill="#D52B1E"/>
+      <polygon points="4.5,1.5 5.4,4.4 8.4,4.4 6,6.2 6.9,9.1 4.5,7.4 2.1,9.1 3,6.2 0.6,4.4 3.6,4.4" fill="#fff"/>
+    </g>
+  </g>
+
+  <!-- ===== PIN ARGENTINA ===== -->
+  <g transform="translate(660,820)" filter="url(#pinShadow)">
+    <use href="#pin"/>
+    <g transform="translate(-12,-25)">
+      <rect width="24" height="6" fill="#74ACDF"/>
+      <rect y="6" width="24" height="6" fill="#fff"/>
+      <rect y="12" width="24" height="6" fill="#74ACDF"/>
+      <circle cx="12" cy="9" r="2.6" fill="#FCBF49"/>
+    </g>
+  </g>
+</svg>

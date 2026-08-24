@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 88" role="img" aria-label="AMIA">
+  <rect width="240" height="88" rx="16" fill="#ffffff"/>
+  <rect x="8" y="8" width="224" height="72" rx="13" fill="#ffffff" stroke="#E3EBF3"/>
+  <circle cx="38" cy="44" r="16" fill="#0067B1" opacity=".95"/>
+  <text x="64" y="50" font-family="Montserrat, Arial, sans-serif" font-size="21" font-weight="800" fill="#0067B1">AMIA</text>
+</svg>
